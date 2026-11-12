@@ -55,6 +55,7 @@ button, select, input {
     background: #55766D;
     color: white;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 .primary-btn:hover {
@@ -63,10 +64,12 @@ button, select, input {
 
 .breast-card {
     border-color: #D9AFA5;
+    cursor: pointer;
 }
 
 .colon-card {
     border-color: #A9B8A0;
+    cursor: pointer;
 }
 
 .input-field {
@@ -195,7 +198,7 @@ MEDATHON 2026
 
 <div class="grid md:grid-cols-2 gap-5">
 
-<button onclick="startFlow('breast')"
+<div onclick="startFlow('breast')"
 class="breast-card border-2 rounded-2xl p-6 text-right hover:bg-pink-50 transition">
 
 <div class="text-4xl mb-4">🎗️</div>
@@ -208,9 +211,9 @@ class="breast-card border-2 rounded-2xl p-6 text-right hover:bg-pink-50 transiti
 الأعراض وعوامل الخطورة وفحص Mammography
 </p>
 
-</button>
+</div>
 
-<button onclick="startFlow('colorectal')"
+<div onclick="startFlow('colorectal')"
 class="colon-card border-2 rounded-2xl p-6 text-right hover:bg-green-50 transition">
 
 <div class="text-4xl mb-4">🩺</div>
@@ -225,7 +228,7 @@ class="colon-card border-2 rounded-2xl p-6 text-right hover:bg-green-50 transiti
 الأعراض وعوامل الخطورة وفحوصات FIT وColonoscopy
 </p>
 
-</button>
+</div>
 
 </div>
 </section>
@@ -245,19 +248,19 @@ class="colon-card border-2 rounded-2xl p-6 text-right hover:bg-green-50 transiti
 
 </div>
 
-<form id="assessment-form">
+<form id="assessment-form" onsubmit="event.preventDefault();">
 
 <div id="questions-container" class="space-y-5"></div>
 
 <div class="flex gap-3 mt-8">
 
 <button type="button" onclick="resetApp()"
-class="border border-beige px-5 py-3 rounded-xl">
+class="border border-beige px-5 py-3 rounded-xl cursor-pointer">
 الرئيسية
 </button>
 
 <button type="button" onclick="calculateResult()"
-class="primary-btn flex-1 rounded-xl py-3 font-bold">
+class="primary-btn flex-1 rounded-xl py-3 font-bold cursor-pointer">
 عرض النتيجة
 </button>
 
@@ -288,21 +291,21 @@ class="primary-btn flex-1 rounded-xl py-3 font-bold">
 
 <div class="grid md:grid-cols-2 gap-4 mt-7">
 
-<button onclick="showServices()"
-class="primary-btn rounded-xl p-4 font-bold">
+<button type="button" onclick="showServices()"
+class="primary-btn rounded-xl p-4 font-bold cursor-pointer">
 📍 الوصول إلى الخدمات الصحية
 </button>
 
-<button onclick="showEducation()"
-class="rounded-xl p-4 font-bold"
+<button type="button" onclick="showEducation()"
+class="rounded-xl p-4 font-bold cursor-pointer"
 style="background:#E8D8C5;color:#554A45">
 📚 معلومات وطرق الفحص
 </button>
 
 </div>
 
-<button onclick="resetApp()"
-class="block mx-auto mt-7 text-sm underline text-gray-500">
+<button type="button" onclick="resetApp()"
+class="block mx-auto mt-7 text-sm underline text-gray-500 cursor-pointer">
 العودة للرئيسية
 </button>
 
@@ -319,8 +322,8 @@ Screening Methods (طرق الكشف المبكر)
 
 <div id="education-content" class="space-y-4"></div>
 
-<button onclick="backToResult()"
-class="primary-btn w-full rounded-xl p-3 mt-6">
+<button type="button" onclick="backToResult()"
+class="primary-btn w-full rounded-xl p-3 mt-6 cursor-pointer">
 العودة للنتيجة
 </button>
 
@@ -337,8 +340,8 @@ class="primary-btn w-full rounded-xl p-3 mt-6">
 
 <div id="services-content" class="space-y-4"></div>
 
-<button onclick="backToResult()"
-class="primary-btn w-full rounded-xl p-3 mt-6">
+<button type="button" onclick="backToResult()"
+class="primary-btn w-full rounded-xl p-3 mt-6 cursor-pointer">
 العودة للنتيجة
 </button>
 
@@ -2423,8 +2426,8 @@ function showServices(){
             البحث عن المراكز الصحية والمستشفيات القريبة.
         </p>
 
-        <button onclick="openNearbyCenters()"
-        class="primary-btn rounded-xl px-5 py-3 mt-3 w-full">
+        <button type="button" onclick="openNearbyCenters()"
+        class="primary-btn rounded-xl px-5 py-3 mt-3 w-full cursor-pointer">
             📍 عرض المراكز القريبة
         </button>
 
