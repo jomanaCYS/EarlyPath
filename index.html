@@ -1,948 +1,2472 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>درب الكشف المبكر | Early Path</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Cairo', sans-serif; }</style>
-</head>
-<body class="bg-slate-100 min-h-screen flex flex-col justify-between text-slate-800">
 
-<header class="bg-teal-700 text-white shadow-lg py-4 px-6 flex justify-between items-center">
-    <div class="flex items-center gap-3 cursor-pointer" onclick="resetApp()">
-        <span class="text-2xl">🧬</span>
-        <div>
-            <h1 class="text-xl font-bold leading-none">Early Path</h1>
-            <span class="text-xs text-teal-200">درب الكشف المبكر</span>
-        </div>
-    </div>
-    <span class="bg-teal-800 text-teal-100 text-xs px-3 py-1 rounded-full border border-teal-600">MEDATHON 2026</span>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EarlyPath | درب الكشف المبكر</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                ivory: '#F7F1E8',
+                rose: '#D9AFA5',
+                deepSage: '#55766D',
+                sage: '#A9B8A0',
+                charcoal: '#554A45',
+                beige: '#E8D8C5'
+            }
+        }
+    }
+}
+</script>
+
+<style>
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #F7F1E8;
+    color: #554A45;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+button, select, input {
+    font-family: 'Cairo', sans-serif;
+}
+
+.main-card {
+    background: #FFFFFF;
+    border: 1px solid #E8D8C5;
+    border-radius: 22px;
+    box-shadow: 0 5px 20px rgba(85,74,69,0.06);
+}
+
+.primary-btn {
+    background: #55766D;
+    color: white;
+    transition: 0.2s;
+}
+
+.primary-btn:hover {
+    background: #405E55;
+}
+
+.breast-card {
+    border-color: #D9AFA5;
+}
+
+.colon-card {
+    border-color: #A9B8A0;
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #E8D8C5;
+    border-radius: 12px;
+    background: #F7F1E8;
+    color: #554A45;
+    outline: none;
+}
+
+.input-field:focus {
+    border-color: #55766D;
+    box-shadow: 0 0 0 2px rgba(85,118,109,0.12);
+}
+
+.question-box {
+    background: #FFFEFC;
+    border: 1px solid #E8D8C5;
+    padding: 16px;
+    border-radius: 14px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.section-title {
+    color: #55766D;
+    font-weight: 800;
+    border-bottom: 1px solid #E8D8C5;
+    padding-bottom: 10px;
+    margin-top: 20px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.breast-badge {
+    background: #F5E5E1;
+    color: #8D5F57;
+}
+
+.colon-badge {
+    background: #E7EDE4;
+    color: #55766D;
+}
+
+.info-box {
+    background: #F7F1E8;
+    border: 1px solid #E8D8C5;
+    padding: 14px;
+    border-radius: 12px;
+    line-height: 1.9;
+}
+
+</style>
+
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+<!-- HEADER -->
+
+<header class="bg-white border-b border-beige shadow-sm">
+
+<div class="max-w-5xl mx-auto px-5 py-4 flex justify-between items-center">
+
+<div onclick="resetApp()" class="flex items-center gap-3 cursor-pointer">
+
+<div class="w-12 h-12 rounded-full bg-ivory flex items-center justify-center text-2xl">
+🧬
+</div>
+
+<div>
+<h1 class="text-xl font-extrabold text-deepSage">EarlyPath</h1>
+<p class="text-xs text-charcoal">درب الكشف المبكر</p>
+</div>
+
+</div>
+
+<span class="badge" style="background:#E7EDE4;color:#55766D">
+MEDATHON 2026
+</span>
+
+</div>
 </header>
 
-<main class="container mx-auto px-4 py-8 max-w-2xl flex-grow">
 
-    <div id="screen-home" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 text-center space-y-6">
-        <div class="inline-block p-4 bg-teal-50 rounded-full text-teal-600 mb-2">
-            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-        </div>
+<main class="max-w-3xl w-full mx-auto px-4 py-8 flex-grow">
 
-        <h2 class="text-2xl font-extrabold text-teal-900">أهلاً بك في منصة درب الكشف المبكر</h2>
 
-        <p class="text-slate-600 leading-relaxed">
-            أجبي عن بضعة أسئلة بسيطة لمعرفة مسار التقييم أو الفحص المناسب. لا يقدم الموقع تشخيصًا طبيًا.
-        </p>
+<!-- HOME -->
 
-        <div class="space-y-3 pt-4">
-            <p class="font-bold text-slate-700 text-sm">اختر مسار الفحص:</p>
+<section id="screen-home" class="main-card p-6 md:p-9 text-center">
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="w-20 h-20 rounded-full bg-ivory flex items-center justify-center mx-auto text-4xl mb-5">
+🌿
+</div>
 
-                <button onclick="startFlow('breast')" class="p-5 border-2 border-slate-200 hover:border-pink-500 rounded-xl text-right transition hover:bg-pink-50/50 flex flex-col justify-between cursor-pointer">
-                    <span class="text-3xl mb-2">🎗️</span>
-                    <span class="font-bold text-lg text-slate-800">سرطان الثدي</span>
-                    <span class="text-xs text-slate-500 mt-1">تقييم الأعراض والأهلية لفحص الماموجرام</span>
-                </button>
+<h2 class="text-2xl font-extrabold text-deepSage mb-3">
+أهلاً بك في EarlyPath
+</h2>
 
-                <button onclick="startFlow('colorectal')" class="p-5 border-2 border-slate-200 hover:border-blue-500 rounded-xl text-right transition hover:bg-blue-50/50 flex flex-col justify-between cursor-pointer">
-                    <span class="text-3xl mb-2">🩺</span>
-                    <span class="font-bold text-lg text-slate-800">سرطان القولون والمستقيم</span>
-                    <span class="text-xs text-slate-500 mt-1">تقييم الأعراض وفحص FIT والمنظار</span>
-                </button>
+<p class="text-charcoal leading-8 mb-7">
+رحلتك نحو الكشف المبكر تبدأ هنا.
 
-            </div>
-        </div>
-    </div>
+أجيبي عن مجموعة من الأسئلة الصحية للتعرف على مسار الفحص أو التقييم الطبي المناسب.
+</p>
 
-    <div id="screen-symptoms" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 space-y-6">
-        <div class="border-b pb-4">
-            <span class="text-xs font-bold px-3 py-1 rounded-full bg-slate-100 text-slate-600">مسار الأعراض (نقطة التفرع)</span>
-            <h3 id="symptom-title" class="text-xl font-bold text-slate-800 mt-2">هل تعاني حالياً من أي أعراض؟</h3>
-            <p class="text-xs text-slate-500 mt-2">اختاري نعم لكل عرض ينطبق عليكِ، ويمكن اختيار أكثر من إجابة.</p>
-        </div>
+<div class="info-box text-sm text-right mb-7">
 
-        <div id="symptom-options" class="space-y-3"></div>
+<strong>تنويه طبي:</strong>
 
-        <div class="flex justify-between items-center pt-4">
-            <button onclick="resetApp()" class="text-sm text-slate-500 hover:underline cursor-pointer">العودة</button>
-            <button onclick="processSymptoms()" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-xl font-bold shadow transition cursor-pointer">متابعة ⬅️</button>
-        </div>
-    </div>
+هذا التطبيق أداة توعوية أولية، ولا يقدم تشخيصًا طبيًا أو يحل محل استشارة الطبيب.
 
-    <div id="screen-eligibility" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 space-y-6">
-        <div class="border-b pb-4">
-            <span class="text-xs font-bold px-3 py-1 rounded-full bg-teal-100 text-teal-800">أسئلة التاريخ الصحي والفحوصات السابقة</span>
-            <h3 class="text-xl font-bold text-slate-800 mt-2">أكملي الأسئلة التالية</h3>
-            <p class="text-xs text-slate-500 mt-2">ستظهر بعض الأسئلة الإضافية بناءً على إجاباتك.</p>
-        </div>
+</div>
 
-        <div id="eligibility-content" class="space-y-4"></div>
+<h3 class="font-bold mb-4">اختاري مسار التقييم</h3>
 
-        <div class="flex justify-between items-center pt-4">
-            <button onclick="backToSymptoms()" class="text-sm text-slate-500 hover:underline cursor-pointer">رجوع للأعراض</button>
-            <button onclick="calculateResult()" class="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-xl font-bold shadow transition cursor-pointer">عرض النتيجة 🏁</button>
-        </div>
-    </div>
+<div class="grid md:grid-cols-2 gap-5">
 
-    <div id="screen-result" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 text-center space-y-6">
-        <div id="result-icon" class="text-5xl mb-2"></div>
+<button onclick="startFlow('breast')"
+class="breast-card border-2 rounded-2xl p-6 text-right hover:bg-pink-50 transition">
 
-        <h3 id="result-title" class="text-2xl font-bold text-slate-800"></h3>
+<div class="text-4xl mb-4">🎗️</div>
 
-        <p id="result-desc" class="text-slate-600 leading-relaxed max-w-lg mx-auto"></p>
+<h3 class="text-lg font-extrabold">Breast Cancer</h3>
 
-        <div id="result-next" class="text-sm text-right bg-slate-50 border rounded-xl p-4 leading-relaxed"></div>
+<p class="text-sm text-charcoal mt-2">تقييم سرطان الثدي</p>
 
-        <hr class="my-4">
+<p class="text-xs text-gray-500 mt-3">
+الأعراض وعوامل الخطورة وفحص Mammography
+</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+</button>
 
-            <button onclick="requestLocationAndOpenMaps()" class="p-4 bg-teal-600 hover:bg-teal-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 shadow transition cursor-pointer">
-                📍 أين أفحص؟ (المراكز القريبة عبر الخريطة)
-            </button>
+<button onclick="startFlow('colorectal')"
+class="colon-card border-2 rounded-2xl p-6 text-right hover:bg-green-50 transition">
 
-            <button onclick="openEducation()" class="p-4 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl text-slate-800 font-bold flex items-center justify-center gap-2 transition cursor-pointer">
-                🎥 كيف يتم الفحص؟ (معلومات توعوية)
-            </button>
+<div class="text-4xl mb-4">🩺</div>
 
-        </div>
+<h3 class="text-lg font-extrabold">Colorectal Cancer</h3>
 
-        <button onclick="resetApp()" class="mt-4 text-sm text-slate-500 hover:text-slate-700 block mx-auto underline cursor-pointer">
-            العودة للرئيسية
-        </button>
-    </div>
+<p class="text-sm text-charcoal mt-2">
+تقييم سرطان القولون والمستقيم
+</p>
 
-    <div id="modal-info" class="hidden fixed inset-0 bg-slate-900/50 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-2xl p-6 max-w-lg w-full space-y-4 shadow-xl text-right max-h-[90vh] overflow-y-auto">
-            <h4 id="modal-title" class="text-xl font-bold text-teal-900"></h4>
-            <div id="modal-body" class="text-sm text-slate-600 space-y-3"></div>
-            <button onclick="closeModal()" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-2 rounded-xl transition cursor-pointer">
-                إغلاق
-            </button>
-        </div>
-    </div>
+<p class="text-xs text-gray-500 mt-3">
+الأعراض وعوامل الخطورة وفحوصات FIT وColonoscopy
+</p>
+
+</button>
+
+</div>
+</section>
+
+
+<!-- QUESTIONS -->
+
+<section id="screen-questions" class="main-card p-6 md:p-8 hidden">
+
+<div class="mb-6 border-b border-beige pb-4">
+
+<span id="path-badge" class="badge"></span>
+
+<h2 id="questions-title" class="text-xl font-extrabold mt-3 text-deepSage"></h2>
+
+<p id="questions-description" class="text-sm text-gray-500 mt-2"></p>
+
+</div>
+
+<form id="assessment-form">
+
+<div id="questions-container" class="space-y-5"></div>
+
+<div class="flex gap-3 mt-8">
+
+<button type="button" onclick="resetApp()"
+class="border border-beige px-5 py-3 rounded-xl">
+الرئيسية
+</button>
+
+<button type="button" onclick="calculateResult()"
+class="primary-btn flex-1 rounded-xl py-3 font-bold">
+عرض النتيجة
+</button>
+
+</div>
+
+</form>
+
+</section>
+
+
+<!-- RESULT -->
+
+<section id="screen-result" class="main-card p-6 md:p-8 hidden">
+
+<div class="text-center">
+
+<div id="result-icon" class="text-5xl mb-4"></div>
+
+<h2 id="result-title" class="text-2xl font-extrabold text-deepSage mb-4"></h2>
+
+<p id="result-description" class="text-charcoal leading-8"></p>
+
+</div>
+
+<div id="result-next" class="info-box mt-6"></div>
+
+<div id="result-method" class="mt-6"></div>
+
+<div class="grid md:grid-cols-2 gap-4 mt-7">
+
+<button onclick="showServices()"
+class="primary-btn rounded-xl p-4 font-bold">
+📍 الوصول إلى الخدمات الصحية
+</button>
+
+<button onclick="showEducation()"
+class="rounded-xl p-4 font-bold"
+style="background:#E8D8C5;color:#554A45">
+📚 معلومات وطرق الفحص
+</button>
+
+</div>
+
+<button onclick="resetApp()"
+class="block mx-auto mt-7 text-sm underline text-gray-500">
+العودة للرئيسية
+</button>
+
+</section>
+
+
+<!-- EDUCATION -->
+
+<section id="screen-education" class="main-card p-6 hidden">
+
+<h2 class="text-xl font-extrabold text-deepSage mb-5">
+Screening Methods (طرق الكشف المبكر)
+</h2>
+
+<div id="education-content" class="space-y-4"></div>
+
+<button onclick="backToResult()"
+class="primary-btn w-full rounded-xl p-3 mt-6">
+العودة للنتيجة
+</button>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section id="screen-services" class="main-card p-6 hidden">
+
+<h2 class="text-xl font-extrabold text-deepSage mb-5">
+الوصول إلى الخدمات الصحية في السعودية
+</h2>
+
+<div id="services-content" class="space-y-4"></div>
+
+<button onclick="backToResult()"
+class="primary-btn w-full rounded-xl p-3 mt-6">
+العودة للنتيجة
+</button>
+
+</section>
 
 </main>
 
-<footer class="bg-white border-t py-4 text-center text-xs text-slate-400">
-    مشروع درب الكشف المبكر (Early Path) - MEDATHON 2026
+
+<footer class="bg-white border-t border-beige text-center py-5 text-xs text-charcoal">
+
+EarlyPath – درب الكشف المبكر
+
+<p class="mt-1">MEDATHON 2026</p>
+
 </footer>
+
 
 <script>
 
-// قاعدة البيانات: نُقلت الأسئلة والحقول الأساسية من ملف EarlyPath Excel.
-// جميع قواعد القرار أدناه أولية وتتطلب اعتمادًا سريريًا قبل الاستخدام الفعلي.
+// ==========================================
+// DATABASE
+// ==========================================
 
-const QUESTION_DB = [
+const DATABASE = {
 
- {id:'BC_Q01',type:'breast',section:'معلومات أساسية',label:'كم عمرك الحالي؟',key:'age_years',kind:'number',required:true},
+breast:[
 
- {id:'BC_Q02',type:'breast',section:'التاريخ العائلي',label:'هل لديكِ تاريخ عائلي لسرطان الثدي أو المبيض لدى أقارب من الدرجة الأولى أو الثانية؟',key:'family_history_breast_ovarian',kind:'choice',options:['نعم','لا','لا أعلم'],required:true},
+{
+id:'BC_Q00',
+section:'Basic Information (المعلومات الأساسية)',
+key:'gender',
+question:'ما جنسك؟',
+type:'select',
+options:['أنثى','ذكر'],
+required:true
+},
 
- {id:'BC_Q03',type:'breast',section:'عوامل الخطورة',label:'هل تعرضتِ لمعالجة إشعاعية على منطقة الصدر بين عمر 10 و30 سنة؟',key:'chest_radiation_age_10_30',kind:'choice',options:['نعم','لا','لا أعلم'],required:true},
+{
+id:'BC_Q01',
+section:'Basic Information (المعلومات الأساسية)',
+key:'age_years',
+question:'كم عمرك الحالي؟',
+type:'number',
+required:true
+},
 
- {id:'BC_Q05',type:'breast',section:'الفحوصات السابقة',label:'متى أجريتِ آخر فحص ماموغرام؟',key:'last_mammogram_date',kind:'dateOrNever',required:true},
+{
+id:'BC_Q02',
+section:'Family History (التاريخ العائلي)',
+key:'family_history_breast_ovarian',
+question:'هل لديك تاريخ عائلي لسرطان الثدي أو المبيض لدى أقارب الدرجة الأولى أو الثانية؟',
+type:'select',
+options:['نعم','لا','لا أعلم'],
+required:true
+},
 
- {id:'BC_Q06',type:'breast',section:'ظروف خاصة',label:'هل أنتِ حامل أو مرضع حاليًا؟',key:'pregnant_or_breastfeeding',kind:'choice',options:['حامل','مرضع','لا ينطبق','أفضل عدم الإجابة'],required:true},
+{
+id:'BC_Q10',
+section:'Family History Details (تفاصيل التاريخ العائلي)',
+key:'breast_ovarian_relative_relationship',
+question:'ما صلة القرابة بالشخص المصاب؟',
+type:'text',
+condition:a=>a.family_history_breast_ovarian==='نعم'
+},
 
- {id:'BC_Q07',type:'breast',section:'ظروف خاصة',label:'هل لديكِ غرسات بالثدي أو سبق أن أجريتِ عملية تجميلية/جراحية بالثدي؟',key:'breast_implants_or_surgery',kind:'choice',options:['نعم','لا','لا أعلم'],required:false},
+{
+id:'BC_Q11',
+section:'Family History Details (تفاصيل التاريخ العائلي)',
+key:'breast_ovarian_relative_age_at_diagnosis',
+question:'كم كان عمر قريبك عند التشخيص؟',
+type:'number',
+condition:a=>a.family_history_breast_ovarian==='نعم'
+},
 
- {id:'BC_Q08',type:'breast',section:'التاريخ الطبي الشخصي',label:'هل سبق أن شُخّصتِ بسرطان الثدي؟',key:'personal_breast_cancer_history',kind:'choice',options:['نعم','لا','لا أعلم'],required:true},
+{
+id:'BC_Q03',
+section:'Risk Factors (عوامل الخطورة)',
+key:'chest_radiation_age_10_30',
+question:'هل سبق أن تعرضتِ لعلاج إشعاعي لمنطقة الصدر بين عمر 10 و30 عامًا؟',
+type:'select',
+options:['نعم','لا','لا أعلم'],
+required:true
+},
 
- {id:'BC_Q09',type:'breast',section:'التاريخ الجيني',label:'هل لديكِ طفرة جينية معروفة مرتبطة بزيادة خطر الإصابة بسرطان الثدي؟',key:'known_breast_cancer_gene_mutation',kind:'choice',options:['نعم','لا','لا أعلم'],required:true},
+{
+id:'BC_Q04',
+section:'Symptoms (الأعراض)',
+key:'current_breast_symptoms',
+question:'هل تعانين حاليًا من كتلة بالثدي أو إفرازات غير طبيعية أو تغيرات في الحلمة أو الجلد أو ألم مستمر؟',
+type:'select',
+options:['نعم','لا'],
+required:true
+},
 
- {id:'BC_Q10',type:'breast',section:'تفاصيل التاريخ العائلي',label:'ما صلة القرابة بالشخص الذي شُخّص بسرطان الثدي أو المبيض؟',key:'breast_ovarian_relative_relationship',kind:'text',condition:a=>a.family_history_breast_ovarian==='نعم'},
+{
+id:'BC_Q05',
+section:'Screening History (تاريخ الفحص)',
+key:'last_mammogram_date',
+question:'متى أجريتِ آخر فحص Mammography (تصوير الثدي بالأشعة السينية)؟',
+type:'date',
+condition:a=>a.gender==='أنثى',
+required:true
+},
 
- {id:'BC_Q11',type:'breast',section:'تفاصيل التاريخ العائلي',label:'كم كان عمر قريبك عند تشخيصه بسرطان الثدي أو المبيض؟',key:'breast_ovarian_relative_age_at_diagnosis',kind:'number',condition:a=>a.family_history_breast_ovarian==='نعم'},
+{
+id:'BC_Q06',
+section:'Special Circumstances (الظروف الخاصة)',
+key:'pregnant_or_breastfeeding',
+question:'هل أنتِ حامل أو مرضعة حاليًا؟',
+type:'select',
+options:['حامل','مرضع','لا ينطبق','أفضل عدم الإجابة'],
+condition:a=>a.gender==='أنثى',
+required:true
+},
 
- {id:'CRC_Q01',type:'colorectal',section:'معلومات أساسية',label:'كم عمرك؟',key:'age_years',kind:'number',required:true},
+{
+id:'BC_Q07',
+section:'Surgical History (التاريخ الجراحي)',
+key:'breast_implants_or_surgery',
+question:'هل لديك غرسات بالثدي أو سبق أن أجريت عملية جراحية أو تجميلية بالثدي؟',
+type:'select',
+options:['نعم','لا','لا أعلم'],
+required:true
+},
 
- {id:'CRC_Q11',type:'colorectal',section:'التاريخ العائلي',label:'هل يوجد تاريخ عائلي لسرطان القولون والمستقيم؟',key:'family_history_crc',kind:'choice',options:['نعم','لا','لا أعلم'],required:true},
+{
+id:'BC_Q08',
+section:'Personal Medical History (التاريخ المرضي الشخصي)',
+key:'personal_breast_cancer_history',
+question:'هل سبق أن شُخّصت بسرطان الثدي؟',
+type:'select',
+options:['نعم','لا','لا أعلم'],
+required:true
+},
 
- {id:'CRC_Q12',type:'colorectal',section:'التاريخ العائلي',label:'هل أُصيب أحد أقارب الدرجة الأولى (الأب/الأم/الأخ/الأخت/الابن/الابنة) بسرطان القولون والمستقيم؟',key:'first_degree_relative_crc',kind:'choice',options:['نعم','لا','لا أعلم'],condition:a=>a.family_history_crc==='نعم',required:true},
+{
+id:'BC_Q09',
+section:'Genetic History (التاريخ الجيني)',
+key:'known_breast_cancer_gene_mutation',
+question:'هل لديك طفرة جينية معروفة مرتبطة بزيادة خطر سرطان الثدي مثل BRCA1 أو BRCA2؟',
+type:'select',
+options:['نعم','لا','لا أعلم'],
+required:true
+}
 
- {id:'CRC_Q13',type:'colorectal',section:'التاريخ العائلي',label:'كم كان عمر قريبك عند التشخيص؟',key:'relative_age_at_diagnosis',kind:'number',condition:a=>a.family_history_crc==='نعم'},
+],
 
- {id:'CRC_Q24',type:'colorectal',section:'التاريخ العائلي',label:'كم عدد الأقارب المصابين بسرطان القولون والمستقيم؟',key:'number_of_relatives_with_crc',kind:'number',condition:a=>a.family_history_crc==='نعم'},
 
- {id:'CRC_Q14',type:'colorectal',section:'التاريخ الطبي الشخصي',label:'هل سبق أن أُصبت بسرطان القولون أو أُزيلت لديك زوائد لحمية؟',key:'personal_crc_or_polyps_history',kind:'choice',options:['سرطان القولون','زوائد لحمية','كلاهما','لا يوجد','لا أعلم'],required:true},
+colorectal:[
 
- {id:'CRC_Q23',type:'colorectal',section:'تفاصيل الزوائد اللحمية',label:'إذا سبق اكتشاف زوائد لحمية، هل تعرف عددها أو حجمها أو نوعها/نتيجة الأنسجة؟',key:'previous_polyps_details',kind:'text',condition:a=>['زوائد لحمية','كلاهما'].includes(a.personal_crc_or_polyps_history)},
+{
+id:'CRC_Q00',
+section:'Basic Information (المعلومات الأساسية)',
+key:'gender',
+question:'ما جنسك؟',
+type:'select',
+options:['أنثى','ذكر'],
+required:true
+},
 
- {id:'CRC_Q15',type:'colorectal',section:'التاريخ الطبي',label:'هل تعاني من التهاب القولون التقرحي أو داء كرون؟',key:'ibd_history',kind:'choice',options:['التهاب القولون التقرحي','داء كرون','لا يوجد','لا أعلم'],required:true},
+{
+id:'CRC_Q01',
+section:'Basic Information (المعلومات الأساسية)',
+key:'age_years',
+question:'كم عمرك الحالي؟',
+type:'number',
+required:true
+},
 
- {id:'CRC_Q16',type:'colorectal',section:'التاريخ الجيني والعائلي',label:'هل توجد في العائلة متلازمة لينش أو داء السلائل الغدي العائلي (FAP)؟',key:'family_lynch_or_fap',kind:'choice',options:['نعم','لا','لا أعلم']},
+{
+id:'CRC_Q02',
+section:'Symptoms (الأعراض)',
+key:'rectal_bleeding_or_blood_stool',
+question:'هل لاحظت وجود دم في البراز أو نزيفًا من المستقيم؟',
+type:'select',
+options:['نعم','لا'],
+required:true
+},
 
- {id:'CRC_Q17',type:'colorectal',section:'التاريخ الطبي',label:'هل سبق أن تعرضت للعلاج الإشعاعي خلال مرحلة الطفولة؟',key:'childhood_radiation_history',kind:'choice',options:['نعم','لا','لا أعلم']},
+{
+id:'CRC_Q03',
+section:'Symptoms (الأعراض)',
+key:'persistent_bowel_habit_change',
+question:'هل تعاني من تغير مستمر في عادات الإخراج مثل الإمساك أو الإسهال؟',
+type:'select',
+options:['نعم','لا'],
+required:true
+},
 
- {id:'CRC_Q18',type:'colorectal',section:'الفحوصات السابقة',label:'هل سبق أن أجريت اختبار FIT؟',key:'previous_fit',kind:'choice',options:['نعم','لا'],required:true},
+{
+id:'CRC_Q04',
+section:'Symptoms (الأعراض)',
+key:'incomplete_bowel_emptying',
+question:'هل تشعر بعدم إفراغ الأمعاء بالكامل بعد التبرز؟',
+type:'select',
+options:['نعم','لا'],
+required:false
+},
 
- {id:'CRC_Q19',type:'colorectal',section:'الفحوصات السابقة',label:'ما نتيجة آخر اختبار FIT؟',key:'last_fit_result',kind:'choice',options:['سلبية','إيجابية','قيد الانتظار','لا أعلم'],condition:a=>a.previous_fit==='نعم'},
+{
+id:'CRC_Q05',
+section:'Symptoms (الأعراض)',
+key:'persistent_abdominal_pain',
+question:'هل تعاني من ألم أو تقلصات مستمرة في البطن؟',
+type:'select',
+options:['نعم','لا'],
+required:true
+},
 
- {id:'CRC_Q21',type:'colorectal',section:'الفحوصات السابقة',label:'متى أجريت آخر اختبار FIT؟',key:'last_fit_date',kind:'dateOrNever',condition:a=>a.previous_fit==='نعم'},
+{
+id:'CRC_Q06',
+section:'Symptoms (الأعراض)',
+key:'persistent_unexplained_bloating',
+question:'هل تعاني من انتفاخ مستمر وغير مفسر في البطن؟',
+type:'select',
+options:['نعم','لا'],
+required:false
+},
 
- {id:'CRC_Q20',type:'colorectal',section:'الفحوصات السابقة',label:'متى أجريت آخر تنظير للقولون؟',key:'last_colonoscopy_date',kind:'dateOrNever'},
+{
+id:'CRC_Q07',
+section:'Symptoms (الأعراض)',
+key:'unexplained_iron_deficiency_anemia',
+question:'هل سبق تشخيصك بفقر الدم الناتج عن نقص الحديد دون سبب واضح؟',
+type:'select',
+options:['نعم','لا','لا أعلم'],
+required:false
+},
 
- {id:'CRC_Q22',type:'colorectal',section:'الفحوصات السابقة',label:'ما نتيجة آخر تنظير للقولون؟',key:'last_colonoscopy_result',kind:'choice',options:['طبيعي','تم العثور على زوائد','نتيجة غير طبيعية أخرى','غير مكتمل','لا أعلم'],condition:a=>!!a.last_colonoscopy_date && a.last_colonoscopy_date!=='لم يسبق'},
+{
+id:'CRC_Q08',
+section:'Symptoms (الأعراض)',
+key:'unexplained_weight_loss',
+question:'هل فقدت وزنًا دون سبب واضح؟',
+type:'select',
+options:['نعم','لا'],
+required:false
+},
 
- // أعراض القولون: تحفظ في شاشة مستقلة وتُعطى الأولوية قبل تقييم الأهلية.
+{
+id:'CRC_Q09',
+section:'Symptoms (الأعراض)',
+key:'persistent_fatigue_or_appetite_loss',
+question:'هل تعاني من إرهاق مستمر أو فقدان الشهية؟',
+type:'select',
+options:['نعم','لا'],
+required:false
+},
 
- {id:'CRC_Q02',type:'colorectal',section:'الأعراض',label:'هل يوجد دم في البراز أو نزيف من فتحة الشرج؟',key:'rectal_bleeding_or_blood_stool',kind:'symptom'},
+{
+id:'CRC_Q10',
+section:'Symptoms (الأعراض)',
+key:'persistent_stool_shape_or_frequency_change',
+question:'هل لاحظت تغيرًا مستمرًا في شكل البراز أو عدد مرات التبرز؟',
+type:'select',
+options:['نعم','لا'],
+required:false
+},
 
- {id:'CRC_Q03',type:'colorectal',section:'الأعراض',label:'هل لديك تغير مستمر في عادات الإخراج مثل الإمساك أو الإسهال؟',key:'persistent_bowel_habit_change',kind:'symptom'},
+{
+id:'CRC_Q11',
+section:'Family History (التاريخ العائلي)',
+key:'family_history_crc',
+question:'هل يوجد تاريخ عائلي لسرطان القولون والمستقيم؟',
+type:'select',
+options:['نعم','لا','لا أعلم'],
+required:true
+},
 
- {id:'CRC_Q04',type:'colorectal',section:'الأعراض',label:'هل تشعر بعدم إفراغ الأمعاء بالكامل بعد التبرز؟',key:'incomplete_bowel_emptying',kind:'symptom'},
+{
+id:'CRC_Q12',
+section:'Family History (التاريخ العائلي)',
+key:'first_degree_relative_crc',
+question:'هل أُصيب أحد أقارب الدرجة الأولى بسرطان القولون والمستقيم؟',
+type:'select',
+options:['نعم','لا','لا أعلم'],
+condition:a=>a.family_history_crc==='نعم',
+required:true
+},
 
- {id:'CRC_Q05',type:'colorectal',section:'الأعراض',label:'هل تعاني من ألم أو تقلصات مستمرة في البطن؟',key:'persistent_abdominal_pain',kind:'symptom'},
+{
+id:'CRC_Q13',
+section:'Family History (التاريخ العائلي)',
+key:'relative_age_at_diagnosis',
+question:'كم كان عمر قريبك عند التشخيص؟',
+type:'number',
+condition:a=>a.family_history_crc==='نعم'
+},
 
- {id:'CRC_Q06',type:'colorectal',section:'الأعراض',label:'هل تعاني من انتفاخ أو اضطرابات بطنية مستمرة وغير مفسرة؟',key:'persistent_unexplained_bloating',kind:'symptom'},
+{
+id:'CRC_Q24',
+section:'Family History (التاريخ العائلي)',
+key:'number_of_relatives_with_crc',
+question:'كم عدد الأقارب المصابين؟',
+type:'number',
+condition:a=>a.family_history_crc==='نعم'
+},
 
- {id:'CRC_Q07',type:'colorectal',section:'الأعراض',label:'هل شُخّصت بفقر دم غير مفسر، خصوصًا نقص الحديد؟',key:'unexplained_iron_deficiency_anemia',kind:'symptom'},
+{
+id:'CRC_Q14',
+section:'Personal Medical History (التاريخ المرضي)',
+key:'personal_crc_or_polyps_history',
+question:'هل سبق أن أُصبت بسرطان القولون أو أُزيلت لديك زوائد لحمية Polyps (نموّات غير طبيعية في بطانة القولون)؟',
+type:'select',
+options:['سرطان القولون','زوائد لحمية','كلاهما','لا يوجد','لا أعلم'],
+required:true
+},
 
- {id:'CRC_Q08',type:'colorectal',section:'الأعراض',label:'هل فقدت وزنًا دون سبب واضح؟',key:'unexplained_weight_loss',kind:'symptom'},
+{
+id:'CRC_Q23',
+section:'Personal Medical History (التاريخ المرضي)',
+key:'previous_polyps_details',
+question:'إذا سبق اكتشاف زوائد لحمية، هل تعرف عددها أو حجمها أو نوعها أو نتيجة الأنسجة؟',
+type:'text',
+condition:a=>['زوائد لحمية','كلاهما'].includes(a.personal_crc_or_polyps_history)
+},
 
- {id:'CRC_Q09',type:'colorectal',section:'الأعراض',label:'هل تعاني من فقدان الشهية أو التعب والضعف المستمر؟',key:'persistent_fatigue_or_appetite_loss',kind:'symptom'},
+{
+id:'CRC_Q15',
+section:'Personal Medical History (التاريخ المرضي)',
+key:'ibd_history',
+question:'هل تعاني من IBD – Inflammatory Bowel Disease (مرض التهاب الأمعاء)، مثل Ulcerative Colitis (التهاب القولون التقرحي) أو Crohn’s Disease (داء كرون)؟',
+type:'select',
+options:['التهاب القولون التقرحي','داء كرون','لا يوجد','لا أعلم'],
+required:true
+},
 
- {id:'CRC_Q10',type:'colorectal',section:'الأعراض',label:'هل لاحظت تغيرًا مستمرًا في شكل البراز أو زيادة عدد مرات التبرز؟',key:'persistent_stool_shape_or_frequency_change',kind:'symptom'}
+{
+id:'CRC_Q16',
+section:'Genetic History (التاريخ الجيني)',
+key:'family_lynch_or_fap',
+question:'هل يوجد في العائلة Lynch Syndrome (متلازمة لينش الوراثية) أو FAP – Familial Adenomatous Polyposis (داء السلائل الغدي العائلي)؟',
+type:'select',
+options:['نعم','لا','لا أعلم'],
+required:true
+},
+
+{
+id:'CRC_Q17',
+section:'Medical History (التاريخ الطبي)',
+key:'childhood_radiation_history',
+question:'هل سبق أن تعرضت للعلاج الإشعاعي خلال مرحلة الطفولة؟',
+type:'select',
+options:['نعم','لا','لا أعلم'],
+required:false
+},
+
+{
+id:'CRC_Q18',
+section:'Screening History (تاريخ الفحوصات)',
+key:'previous_fit',
+question:'هل سبق أن أجريت اختبار FIT – Fecal Immunochemical Test (اختبار البراز المناعي للكشف عن الدم الخفي)؟',
+type:'select',
+options:['نعم','لا'],
+required:true
+},
+
+{
+id:'CRC_Q19',
+section:'Screening History (تاريخ الفحوصات)',
+key:'last_fit_result',
+question:'ما نتيجة آخر اختبار FIT؟',
+type:'select',
+options:['سلبية','إيجابية','قيد الانتظار','لا أعلم'],
+condition:a=>a.previous_fit==='نعم',
+required:true
+},
+
+{
+id:'CRC_Q21',
+section:'Screening History (تاريخ الفحوصات)',
+key:'last_fit_date',
+question:'متى أجريت آخر اختبار FIT؟',
+type:'date',
+condition:a=>a.previous_fit==='نعم',
+required:true
+},
+
+{
+id:'CRC_Q20',
+section:'Screening History (تاريخ الفحوصات)',
+key:'last_colonoscopy_date',
+question:'متى أجريت آخر Colonoscopy (تنظير القولون)؟',
+type:'date',
+required:true
+},
+
+{
+id:'CRC_Q22',
+section:'Screening History (تاريخ الفحوصات)',
+key:'last_colonoscopy_result',
+question:'ما نتيجة آخر تنظير للقولون؟',
+type:'select',
+options:['طبيعي','تم العثور على زوائد لحمية','نتيجة غير طبيعية أخرى','غير مكتمل','لا أعلم'],
+condition:a=>
+    a.last_colonoscopy_date &&
+    !['Never','Unknown'].includes(a.last_colonoscopy_date),
+required:true
+}
 
 ];
 
-const BREAST_SYMPTOM = {
-    id:'BC_Q04',
-    label:'هل تشعرين حاليًا بكتلة أو إفرازات أو تغيرات في الثدي أو الجلد أو ألم غير مرتبط بالدورة؟',
-    key:'current_breast_symptoms'
+
+// ==========================================
+// SCREENING METHODS
+// ==========================================
+
+const SCREENING_METHODS = {
+
+breast:[
+
+{
+name:'Mammography',
+definition:'تصوير الثدي بالأشعة السينية للكشف عن التغيرات والكتل الصغيرة.',
+interval:'كل عامين للفئة العامة وفق الملف، مع مراعاة تاريخ آخر فحص.',
+note:'لا يستخدم هذا المسار بدلًا من التقييم التشخيصي عند وجود أعراض.'
+}
+
+],
+
+colorectal:[
+
+{
+name:'FIT – Fecal Immunochemical Test',
+definition:'اختبار البراز المناعي للكشف عن الدم الخفي في البراز.',
+interval:'سنويًا إذا كانت النتيجة سلبية لمتوسطي الخطورة وفق الملف.',
+note:'النتيجة الإيجابية تتبع بتنظير القولون، ولا يُعاد FIT بدلًا منه.'
+},
+
+{
+name:'Colonoscopy',
+definition:'تنظير القولون والمستقيم باستخدام أنبوب مرن مزود بكاميرا، ويمكن خلاله أخذ خزعة أو إزالة بعض الزوائد.',
+interval:'كل 10 سنوات بعد نتيجة طبيعية لدى متوسط الخطورة وفق الملف.',
+note:'الفاصل الزمني لا ينطبق تلقائيًا على الحالات مرتفعة الخطورة.'
+},
+
+{
+name:'Flexible Sigmoidoscopy',
+definition:'تنظير المستقيم والجزء السفلي من القولون.',
+interval:'كل 5 سنوات وفق الخيارات الدولية المذكورة في الملف.',
+note:'خيار دولي للمقارنة، وليس تأكيدًا لتوفره ضمن البرنامج السعودي.'
+},
+
+{
+name:'CT Colonography',
+definition:'تصوير القولون والمستقيم باستخدام الأشعة المقطعية.',
+interval:'كل 5 سنوات وفق الخيارات الدولية المذكورة في الملف.',
+note:'خيار دولي للمقارنة.'
+},
+
+{
+name:'Stool DNA-FIT',
+definition:'اختبار البراز الذي يجمع بين البحث عن الدم وبعض التغيرات الجينية.',
+interval:'كل سنة إلى 3 سنوات وفق الخيارات الدولية المذكورة في الملف.',
+note:'خيار دولي للمقارنة.'
+}
+
+]
+
 };
 
-const CRC_SYMPTOMS = QUESTION_DB.filter(q=>q.type==='colorectal' && q.kind==='symptom');
 
-let currentType='breast', answers={}, lastResult=null;
+// ==========================================
+// MEDICAL GLOSSARY
+// ==========================================
+
+const GLOSSARY = [
+
+['Mammography','تصوير الثدي بالأشعة السينية.'],
+['FIT','اختبار البراز المناعي للكشف عن الدم الخفي.'],
+['Colonoscopy','تنظير القولون باستخدام كاميرا لفحص القولون والمستقيم.'],
+['Polyps','زوائد لحمية؛ نموّات غير طبيعية في بطانة القولون.'],
+['IBD','مرض التهاب الأمعاء.'],
+['Ulcerative Colitis','التهاب القولون التقرحي.'],
+['Crohn’s Disease','داء كرون، وهو مرض التهابي مزمن قد يصيب أجزاء مختلفة من الجهاز الهضمي.'],
+['Lynch Syndrome','متلازمة لينش؛ اضطراب وراثي يزيد خطر بعض أنواع السرطان.'],
+['FAP','داء السلائل الغدي العائلي.'],
+['BRCA1 / BRCA2','جينات مرتبطة بإصلاح الحمض النووي، وبعض طفراتها تزيد خطر سرطان الثدي والمبيض.'],
+['Clinical Assessment','التقييم الطبي السريري بواسطة مقدم الرعاية الصحية.'],
+['Screening','الفحص المبكر للأشخاص الذين لا يعانون من أعراض.'],
+['Diagnostic Evaluation','التقييم التشخيصي لتحديد سبب الأعراض أو العلامات الموجودة.']
+
+];
+
+
+// ==========================================
+// APP STATE
+// ==========================================
+
+let currentType = '';
+let answers = {};
+let lastResult = null;
+
+
+// ==========================================
+// NAVIGATION
+// ==========================================
 
 function hideAllScreens(){
-    ['screen-home','screen-symptoms','screen-eligibility','screen-result']
-    .forEach(id=>document.getElementById(id).classList.add('hidden'));
+
+    const screens = [
+        'screen-home',
+        'screen-questions',
+        'screen-result',
+        'screen-education',
+        'screen-services'
+    ];
+
+    screens.forEach(id=>{
+        document.getElementById(id).classList.add('hidden');
+    });
+
 }
+
 
 function resetApp(){
-    answers={};
-    lastResult=null;
+
+    currentType = '';
+    answers = {};
+    lastResult = null;
+
+    document.getElementById('assessment-form').reset();
+
     hideAllScreens();
+
     document.getElementById('screen-home').classList.remove('hidden');
-    document.getElementById('modal-info').classList.add('hidden');
+
 }
 
-function backToSymptoms(){
-    hideAllScreens();
-    document.getElementById('screen-symptoms').classList.remove('hidden');
-}
+
+// ==========================================
+// START ASSESSMENT
+// ==========================================
 
 function startFlow(type){
-    currentType=type;
-    answers={};
+
+    currentType = type;
+    answers = {};
+
     hideAllScreens();
 
-    document.getElementById('screen-symptoms').classList.remove('hidden');
+    document.getElementById('screen-questions').classList.remove('hidden');
 
-    const title=document.getElementById('symptom-title');
-    const options=document.getElementById('symptom-options');
+    const badge = document.getElementById('path-badge');
 
-    if(type==='breast'){
-        title.innerText='هل تعانين حاليًا من أي أعراض أو تغيرات في الثدي؟';
+    if(type === 'breast'){
 
-        options.innerHTML=`
-        <label class="flex items-start gap-3 p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
-            <input id="breast-symptom-yes" type="checkbox" class="mt-1 w-4 h-4">
-            <span class="font-semibold text-slate-700">${BREAST_SYMPTOM.label}</span>
-        </label>`;
-    }
+        badge.innerText = '🎗️ Breast Cancer Assessment';
+        badge.className = 'badge breast-badge';
 
-    else{
-        title.innerText='هل تعاني حاليًا من أي من الأعراض التالية؟';
+        document.getElementById('questions-title').innerText =
+        'تقييم صحة الثدي';
 
-        options.innerHTML=CRC_SYMPTOMS.map(q=>`
-        <label class="flex items-start gap-3 p-4 border rounded-xl cursor-pointer hover:bg-slate-50">
-            <input type="checkbox" data-symptom="${q.key}" class="symptom-check mt-1 w-4 h-4">
-            <span class="font-semibold text-slate-700">${q.label}</span>
-        </label>`).join('');
-    }
-}
+        document.getElementById('questions-description').innerText =
+        'أجيبي عن الأسئلة التالية بدقة.';
 
-function processSymptoms(){
-
-    if(currentType==='breast'){
-
-        answers.current_breast_symptoms=
-        document.getElementById('breast-symptom-yes').checked?'نعم':'لا';
-
-        if(answers.current_breast_symptoms==='نعم'){
-
-            showResult(
-                '⚠️',
-                'توصيتنا: مراجعة الطبيب لتقييم الأعراض',
-                'وجود كتلة أو إفرازات أو تغيرات في الثدي يستدعي تقييمًا طبيًا تشخيصيًا. لا يعني ذلك بالضرورة وجود سرطان، لكن من المهم عدم تجاهل الأعراض.',
-                'لا تستخدمي مسار الفحص الروتيني بدلًا من تقييم الأعراض.'
-            );
-
-            return;
-        }
     }
 
     else{
 
-        CRC_SYMPTOMS.forEach(q=>{
-            const el=document.querySelector(`[data-symptom="${q.key}"]`);
-            answers[q.key]=el.checked?'نعم':'لا';
-        });
+        badge.innerText = '🩺 Colorectal Cancer Assessment';
+        badge.className = 'badge colon-badge';
 
-        if(CRC_SYMPTOMS.some(q=>answers[q.key]==='نعم')){
+        document.getElementById('questions-title').innerText =
+        'تقييم صحة القولون والمستقيم';
 
-            showResult(
-                '⚠️',
-                'توصيتنا: مراجعة الطبيب لتقييم الأعراض',
-                'وجود عرض أو أكثر من الأعراض المذكورة يستدعي تقييمًا طبيًا لمعرفة السبب. لا يعني ذلك بالضرورة وجود سرطان، ولا ينبغي استبدال التقييم التشخيصي بفحص روتيني.',
-                'إذا كان هناك نزيف شديد أو إغماء أو ألم شديد مع قيء وانتفاخ وعدم إخراج غازات أو براز، توجّه للطوارئ.'
-            );
+        document.getElementById('questions-description').innerText =
+        'أجيبي عن الأسئلة التالية بدقة.';
 
-            return;
-        }
     }
 
-    openEligibilityScreen();
+    renderQuestions();
+
 }
 
-    function renderField(q){
 
-    let input='';
+// ==========================================
+// RENDER QUESTIONS
+// ==========================================
 
-    if(q.kind==='choice'){
+function renderQuestions(){
 
-        input=`
-        <select id="${q.key}" data-key="${q.key}" class="answer-field w-full p-3 border rounded-xl bg-slate-50">
-            <option value="">-- اختاري --</option>
-            ${q.options.map(o=>`<option value="${o}">${o}</option>`).join('')}
-        </select>`;
+    const container = document.getElementById('questions-container');
+
+    const questions = DATABASE[currentType];
+
+    let html = '';
+    let previousSection = '';
+
+    questions.forEach(q=>{
+
+        if(q.section !== previousSection){
+
+            previousSection = q.section;
+
+            html += `
+            <h3 class="section-title">
+                ${q.section}
+            </h3>
+            `;
+
+        }
+
+        html += `
+        <div class="question-box" id="field-${q.id}">
+
+            <label class="block font-bold text-sm mb-3">
+
+                ${q.question}
+
+                ${q.required ? '<span class="text-red-500">*</span>' : ''}
+
+            </label>
+
+            ${renderInput(q)}
+
+            <p class="text-xs text-gray-400 mt-2">
+                Question ID: ${q.id}
+            </p>
+
+        </div>
+        `;
+
+    });
+
+    container.innerHTML = html;
+
+    questions.forEach(q=>{
+
+        const input = document.getElementById(q.key);
+
+        if(input){
+
+            input.addEventListener('change',updateConditionalFields);
+            input.addEventListener('input',updateConditionalFields);
+
+        }
+
+        const status = document.getElementById(q.key+'_status');
+
+        if(status){
+
+            status.addEventListener('change',updateConditionalFields);
+
+        }
+
+    });
+
+    updateConditionalFields();
+
+}
+
+
+// ==========================================
+// INPUT TYPES
+// ==========================================
+
+function renderInput(q){
+
+    if(q.type === 'select'){
+
+        return `
+        <select id="${q.key}" class="input-field">
+
+            <option value="">اختاري الإجابة</option>
+
+            ${q.options.map(option=>`
+
+                <option value="${option}">
+                    ${option}
+                </option>
+
+            `).join('')}
+
+        </select>
+        `;
 
     }
 
-    else if(q.kind==='number'){
+    if(q.type === 'number'){
 
-        input=`
-        <input id="${q.key}" data-key="${q.key}" type="number" min="0" max="120"
-        class="answer-field w-full p-3 border rounded-xl bg-slate-50"
-        placeholder="أدخلي العمر بالأرقام">`;
+        return `
+        <input
+            id="${q.key}"
+            type="number"
+            min="0"
+            max="120"
+            class="input-field"
+            placeholder="أدخلي الرقم">
+        `;
 
     }
 
-    else if(q.kind==='dateOrNever'){
+    if(q.type === 'date'){
 
-        input=`
+        return `
         <div class="space-y-2">
-            <select id="${q.key}_status" class="date-status w-full p-3 border rounded-xl bg-slate-50" onchange="toggleDate('${q.key}')">
-                <option value="">-- اختاري --</option>
-                <option value="لم يسبق">لم يسبق</option>
+
+            <select
+            id="${q.key}_status"
+            class="input-field"
+            onchange="toggleDate('${q.key}')">
+
+                <option value="">اختاري الإجابة</option>
+
+                <option value="never">لم يسبق</option>
+
                 <option value="date">لدي تاريخ فحص</option>
-                <option value="غير معروف">لا أتذكر</option>
+
+                <option value="unknown">لا أتذكر</option>
+
             </select>
 
-            <input id="${q.key}" data-key="${q.key}" type="date"
-            class="answer-field hidden w-full p-3 border rounded-xl bg-slate-50">
-        </div>`;
+            <input
+                id="${q.key}"
+                type="date"
+                class="input-field hidden"
+                max="${new Date().toISOString().split('T')[0]}">
 
-    }
-
-    else{
-
-        input=`
-        <input id="${q.key}" data-key="${q.key}" type="text"
-        class="answer-field w-full p-3 border rounded-xl bg-slate-50"
-        placeholder="اكتبي التفاصيل إن عُرفت">`;
+        </div>
+        `;
 
     }
 
     return `
-    <div class="question-field" data-question="${q.id}">
-        <label for="${q.key}" class="block font-bold text-sm mb-2 text-slate-700">
-            ${q.label}${q.required?'<span class="text-red-500"> *</span>':''}
-        </label>
+    <input
+        id="${q.key}"
+        type="text"
+        class="input-field"
+        placeholder="اكتبي الإجابة">
+    `;
 
-        ${input}
-
-        <p class="text-xs text-slate-400 mt-1">${q.id}</p>
-    </div>`;
 }
+
+
+// ==========================================
+// DATE HELPERS
+// ==========================================
 
 function toggleDate(key){
 
-    const status=document.getElementById(key+'_status').value;
-    const date=document.getElementById(key);
+    const status = document.getElementById(key+'_status').value;
 
-    date.classList.toggle('hidden',status!=='date');
-    date.required=status==='date';
+    const date = document.getElementById(key);
+
+    date.classList.toggle('hidden',status !== 'date');
+
+    date.value = '';
+
+    updateConditionalFields();
+
 }
 
-function openEligibilityScreen(){
 
-    hideAllScreens();
+// ==========================================
+// CONDITIONAL QUESTIONS
+// ==========================================
 
-    document.getElementById('screen-eligibility').classList.remove('hidden');
+function updateConditionalFields(){
 
-    const content=document.getElementById('eligibility-content');
+    const values = collectAnswers(false);
 
-    const fields=QUESTION_DB.filter(q=>
-        q.type===currentType && q.kind!=='symptom'
-    );
+    DATABASE[currentType].forEach(q=>{
 
-    let html='',section='';
+        if(!q.condition)return;
 
-    fields.forEach(q=>{
+        const field = document.getElementById('field-'+q.id);
 
-        if(q.section!==section){
-            section=q.section;
-            html+=`<h4 class="text-teal-800 font-extrabold pt-3 border-b pb-2">${section}</h4>`;
+        if(!field)return;
+
+        const visible = q.condition(values);
+
+        field.classList.toggle('hidden',!visible);
+
+        if(!visible){
+
+            const input = document.getElementById(q.key);
+
+            if(input)input.value = '';
+
+            const status = document.getElementById(q.key+'_status');
+
+            if(status)status.value = '';
+
         }
 
-        html+=renderField(q);
-
     });
 
-    content.innerHTML=html;
-
-    content.querySelectorAll('.answer-field').forEach(el=>
-        el.addEventListener('input',refreshConditionalFields)
-    );
-
-    content.querySelectorAll('select').forEach(el=>
-        el.addEventListener('change',refreshConditionalFields)
-    );
-
-    refreshConditionalFields();
 }
 
-function refreshConditionalFields(){
 
-    const vals=collectAnswers(false);
+// ==========================================
+// COLLECT ANSWERS
+// ==========================================
 
-    document.querySelectorAll('.question-field').forEach(el=>{
+function collectAnswers(validate = true){
 
-        const q=QUESTION_DB.find(x=>x.id===el.dataset.question);
+    let result = {};
 
-        if(!q)return;
+    DATABASE[currentType].forEach(q=>{
 
-        const visible=!q.condition||q.condition(vals);
+        const field = document.getElementById('field-'+q.id);
 
-        el.classList.toggle('hidden',!visible);
+        if(!field || field.classList.contains('hidden'))return;
 
-    });
-}
+        let value = '';
 
-function collectAnswers(validate=true){
+        if(q.type === 'date'){
 
-    const vals={...answers};
+            const status = document.getElementById(q.key+'_status').value;
 
-    const fields=QUESTION_DB.filter(q=>
-        q.type===currentType && q.kind!=='symptom'
-    );
+            if(status === 'never')value = 'Never';
 
-    for(const q of fields){
+            else if(status === 'unknown')value = 'Unknown';
 
-        const wrap=document.querySelector(`[data-question="${q.id}"]`);
+            else if(status === 'date'){
 
-        if(!wrap||wrap.classList.contains('hidden'))continue;
+                value = document.getElementById(q.key).value;
 
-        let val='';
-
-        if(q.kind==='dateOrNever'){
-
-            const status=document.getElementById(q.key+'_status')?.value||'';
-
-            val=status==='date'?
-            (document.getElementById(q.key)?.value||''):
-            status;
+            }
 
         }
 
         else{
 
-            val=document.getElementById(q.key)?.value?.trim()||'';
+            value = document.getElementById(q.key).value.trim();
 
         }
 
-        if(validate&&q.required&&!val){
+        if(q.required && validate && !value){
 
-            alert('الرجاء الإجابة عن السؤال: '+q.label);
+            alert('الرجاء الإجابة عن السؤال: '+q.question);
 
-            document.getElementById(q.key+'_status')?.focus();
             document.getElementById(q.key)?.focus();
 
-            throw new Error('required');
+            throw new Error('Missing required answer');
+
         }
 
-        if(val)vals[q.key]=val;
+        if(q.type === 'number' && value){
 
-    }
+            const n = Number(value);
 
-    return vals;
+            if(!Number.isInteger(n) || n < 0 || n > 120){
+
+                alert('الرجاء إدخال رقم صحيح.');
+
+                throw new Error('Invalid number');
+
+            }
+
+        }
+
+        result[q.key] = value;
+
+    });
+
+    return result;
+
 }
+
+
+// ==========================================
+// DATE VALIDATION
+// ==========================================
+
+function validPastDate(dateString){
+
+    if(!dateString)return false;
+
+    const date = new Date(dateString+'T00:00:00');
+
+    const today = new Date();
+
+    today.setHours(23,59,59,999);
+
+    return !isNaN(date.getTime()) && date <= today;
+
+}
+
+
+function monthsSince(dateString){
+
+    if(!validPastDate(dateString))return null;
+
+    const date = new Date(dateString+'T00:00:00');
+
+    const now = new Date();
+
+    return (
+        (now.getFullYear()-date.getFullYear())*12
+        +
+        now.getMonth()-date.getMonth()
+    );
+
+}
+
+
+function withinLast23Months(dateString){
+
+    if(!validPastDate(dateString))return false;
+
+    const date = new Date(dateString+'T00:00:00');
+
+    const limit = new Date();
+
+    limit.setMonth(limit.getMonth()-23);
+
+    return date >= limit;
+
+}
+
+
+function withinLast12Months(dateString){
+
+    if(!validPastDate(dateString))return false;
+
+    const date = new Date(dateString+'T00:00:00');
+
+    const now = new Date();
+
+    const limit = new Date();
+
+    limit.setFullYear(now.getFullYear()-1);
+
+    return date >= limit && date <= now;
+
+}
+
+
+function withinLast10Years(dateString){
+
+    if(!validPastDate(dateString))return false;
+
+    const date = new Date(dateString+'T00:00:00');
+
+    const now = new Date();
+
+    const limit = new Date();
+
+    limit.setFullYear(now.getFullYear()-10);
+
+    return date >= limit && date <= now;
+
+}
+
+
+// ==========================================
+// DECISION ENGINE
+// ==========================================
 
 function calculateResult(){
 
     let a;
 
     try{
-        a=collectAnswers(true);
+
+        a = collectAnswers(true);
+
     }
 
-    catch(e){
+    catch(error){
+
         return;
+
     }
 
-    answers={...answers,...a};
+    answers = a;
 
-    if(currentType==='breast'){
+    if(currentType === 'breast'){
+
         decideBreast(a);
+
     }
 
     else{
+
         decideColorectal(a);
+
     }
+
 }
+
+
+// ==========================================
+// BREAST CANCER DECISION RULES
+// ==========================================
 
 function decideBreast(a){
 
-    const age=Number(a.age_years);
+    const age = Number(a.age_years);
 
-    if(a.current_breast_symptoms==='نعم'){
 
-        showResult(
+    // PRIORITY 1: Symptoms
+
+    if(a.current_breast_symptoms === 'نعم'){
+
+        return showResult(
+
             '⚠️',
-            'تقييم طبي تشخيصي مطلوب',
-            'وجود أعراض في الثدي يستدعي تقييمًا طبيًا بصرف النظر عن العمر أو تاريخ الفحص السابق.',
-            'لا تنتظري موعد الفحص الدوري عند وجود أعراض.'
+
+            'Medical Assessment Required',
+
+            'وجود أعراض أو تغيرات في الثدي يستدعي تقييمًا طبيًا تشخيصيًا. لا يعني ذلك بالضرورة وجود سرطان.',
+
+            'يرجى مراجعة الطبيب لتقييم الأعراض. لا تنتظري موعد الفحص الدوري عند وجود أعراض.',
+
+            'diagnostic'
+
         );
 
-        return;
     }
 
-    if(
-        a.personal_breast_cancer_history==='نعم'||
-        a.personal_breast_cancer_history==='لا أعلم'||
-        a.known_breast_cancer_gene_mutation==='نعم'||
-        a.known_breast_cancer_gene_mutation==='لا أعلم'
-    ){
 
-        showResult(
+    // PRIORITY 2: Personal medical history
+
+    if(a.personal_breast_cancer_history !== 'لا'){
+
+        return showResult(
+
             '📋',
-            'تحتاجين إلى مراجعة سريرية مخصصة',
-            'التاريخ الشخصي أو الجيني يستلزم مراجعة الفريق الصحي لتحديد خطة المتابعة والفحص المناسبة.',
-            'لا يصنفك الموقع تلقائيًا ضمن الفحص الروتيني.'
+
+            'Personal Medical History Review',
+
+            'وجود تاريخ شخصي لسرطان الثدي أو عدم التأكد منه يتطلب مراجعة سريرية.',
+
+            'راجعي الطبيب لتحديد خطة المتابعة المناسبة. لا يحدد التطبيق جدول فحص تلقائيًا.',
+
+            'clinical'
+
         );
 
-        return;
     }
 
-    if(
-        a.chest_radiation_age_10_30==='نعم'||
-        a.family_history_breast_ovarian==='نعم'||
-        a.family_history_breast_ovarian==='لا أعلم'
-    ){
 
-        showResult(
+    // PRIORITY 3: Genetic history
+
+    if(a.known_breast_cancer_gene_mutation !== 'لا'){
+
+        return showResult(
+
             '📋',
-            'تحتاجين إلى تقييم عوامل الخطورة',
-            'التاريخ العائلي أو التعرض السابق للإشعاع قد يؤثر في عمر بدء الفحص وخطته. يلزم تقييم سريري لتحديد مستوى الخطورة.',
-            'لا يستنتج الموقع مستوى الخطورة من هذه الإجابات وحدها.'
+
+            'Genetic Risk Assessment',
+
+            'وجود طفرة جينية معروفة أو عدم التأكد منها يستدعي تقييمًا سريريًا لتحديد خطة الفحص.',
+
+            'راجعي الطبيب أو عيادة الوراثة لتحديد نوع الفحص وتوقيته.',
+
+            'clinical'
+
         );
 
-        return;
     }
+
+
+    // PRIORITY 4: Radiation history
+
+    if(a.chest_radiation_age_10_30 !== 'لا'){
+
+        return showResult(
+
+            '📋',
+
+            'High-Risk Clinical Review',
+
+            'التعرض السابق للعلاج الإشعاعي لمنطقة الصدر قد يستدعي خطة فحص مختلفة.',
+
+            'يذكر الملف بدء الفحص من عمر 30 سنة لبعض الفئات مرتفعة الخطورة. تحديد انطباق ذلك عليكِ يحتاج مراجعة الطبيب.',
+
+            'clinical'
+
+        );
+
+    }
+
+
+    // PRIORITY 5: Family history
+
+    if(a.family_history_breast_ovarian !== 'لا'){
+
+        return showResult(
+
+            '📋',
+
+            'Family History Assessment',
+
+            'التاريخ العائلي لسرطان الثدي أو المبيض قد يؤثر في مستوى الخطورة وعمر بدء الفحص.',
+
+            'راجعي الطبيب لتقييم صلة القرابة وأعمار التشخيص وتحديد خطة الفحص المناسبة.',
+
+            'clinical'
+
+        );
+
+    }
+
+
+    // PRIORITY 6: Male pathway
+
+    if(a.gender === 'ذكر'){
+
+        return showResult(
+
+            'ℹ️',
+
+            'Clinical Assessment',
+
+            'مسار Mammography الروتيني المذكور في هذا المشروع لا ينطبق على الرجال.',
+
+            'هذا لا يعني عدم الحاجة للتقييم عند وجود أعراض أو عوامل خطورة. راجع الطبيب إذا ظهرت أي تغيرات بالثدي.',
+
+            'clinical'
+
+        );
+
+    }
+
+
+    // PRIORITY 7: Implants or surgery
+
+    if(a.breast_implants_or_surgery !== 'لا'){
+
+        return showResult(
+
+            '📋',
+
+            'Imaging Consultation',
+
+            'وجود غرسات بالثدي أو جراحة سابقة يستدعي التأكد من ملاءمة طريقة التصوير.',
+
+            'أخبري مركز التصوير بتاريخ العمليات أو وجود الغرسات لتحديد الطريقة المناسبة.',
+
+            'clinical'
+
+        );
+
+    }
+
+
+    // PRIORITY 8: Pregnancy or breastfeeding
 
     if(
-        a.pregnant_or_breastfeeding==='حامل'||
-        a.pregnant_or_breastfeeding==='مرضع'||
-        a.pregnant_or_breastfeeding==='أفضل عدم الإجابة'
+
+        ['حامل','مرضع','أفضل عدم الإجابة'].includes(a.pregnant_or_breastfeeding)
+
     ){
 
-        showResult(
-            'ℹ️',
-            'يلزم التأكد من ملاءمة الفحص مع الفريق الصحي',
-            'تحتاج ملاءمة الماموغرام الروتيني إلى مراجعة الفريق الصحي وفق حالتك.',
-            'هذا لا يمنع تقييم أي أعراض تشخيصيًا.'
+        return showResult(
+
+            '📋',
+
+            'Clinician Review Required',
+
+            'الحمل أو الرضاعة قد يؤثران في ملاءمة Mammography الروتيني.',
+
+            'راجعي الفريق الصحي لتحديد ملاءمة الفحص وتوقيته. لا يمنع ذلك التقييم التشخيصي عند وجود أعراض.',
+
+            'clinical'
+
         );
 
-        return;
     }
+
+
+    // AGE VALIDATION
+
+    if(!Number.isInteger(age) || age < 0 || age > 120){
+
+        return showResult(
+
+            'ℹ️',
+
+            'Review Information',
+
+            'تعذر تحديد مسار الفحص من العمر المدخل.',
+
+            'تحققي من البيانات المدخلة.',
+
+            'clinical'
+
+        );
+
+    }
+
+
+    // MAMMOGRAPHY DATE
+
+    if(a.last_mammogram_date === 'Unknown'){
+
+        return showResult(
+
+            '📋',
+
+            'Previous Screening Review',
+
+            'لا يمكن التأكد من موعد استحقاق الفحص دون معرفة تاريخ آخر Mammography.',
+
+            'راجعي سجل الفحوصات أو تواصلي مع مقدم الرعاية الصحية.',
+
+            'clinical'
+
+        );
+
+    }
+
 
     if(
-        a.breast_implants_or_surgery==='نعم'||
-        a.breast_implants_or_surgery==='لا أعلم'
+
+        a.last_mammogram_date !== 'Never' &&
+
+        !validPastDate(a.last_mammogram_date)
+
     ){
 
-        showResult(
-            'ℹ️',
-            'راجعي مركز التصوير أو مقدم الرعاية',
-            'قد تؤثر الغرسات أو جراحة الثدي السابقة على طريقة إجراء التصوير أو تفسيره.',
-            'لا يمنع ذلك الفحص تلقائيًا؛ أخبري مقدم الخدمة قبل التصوير.'
+        return showResult(
+
+            '📋',
+
+            'Date Verification Required',
+
+            'تعذر التحقق من تاريخ الفحص السابق.',
+
+            'راجعي التاريخ المدخل قبل تحديد موعد الفحص القادم.',
+
+            'clinical'
+
         );
 
-        return;
     }
 
-    if(!Number.isFinite(age)||age<0||age>120){
 
-        showResult(
-            'ℹ️',
-            'نحتاج إلى مراجعة البيانات',
-            'تعذّر تحديد المسار من العمر المدخل.',
-            'تحققي من الإجابة أو راجعي مقدم الرعاية.'
+    if(
+
+        a.last_mammogram_date !== 'Never' &&
+
+        withinLast23Months(a.last_mammogram_date)
+
+    ){
+
+        return showResult(
+
+            '🗓️',
+
+            'Screening Not Due Yet',
+
+            'وفق قاعدة المشروع، لا يكون موعد Mammography الدوري مستحقًا إذا أُجري خلال آخر 23 شهرًا.',
+
+            'راجعي تاريخ الفحص السابق وتحققي من موعد الفحص القادم مع مقدم الرعاية.',
+
+            'routine'
+
         );
 
-        return;
     }
 
-    if(age>=40){
 
-        if(
-            a.last_mammogram_date==='لم يسبق'||
-            a.last_mammogram_date==='غير معروف'||
-            !a.last_mammogram_date
-        ){
+    // AVERAGE RISK PATHWAY
 
-            showResult(
-                '✅',
-                'قد تكونين ضمن الفئة العمرية للفحص الدوري',
-                'قد تكونين ضمن فئة الفحص الدوري بالماموغرام ابتداءً من عمر 40 سنة وفق قاعدة الملف، بعد التحقق من الأهلية وشروط الخدمة.',
-                'إذا كان لديك ماموغرام سابق أو تاريخ غير واضح، أكدي موعد الفحص القادم مع مقدم الرعاية.'
-            );
+    if(age >= 40){
 
-            return;
-        }
+        return showResult(
 
-        const months=monthsSince(a.last_mammogram_date);
+            '✅',
 
-        if(months!==null&&months<23){
+            'Potential Routine Screening Path',
 
-            showResult(
-                '🗓️',
-                'قد لا يكون موعد الماموغرام مستحقًا بعد',
-                'يشير ملف المشروع إلى عدم تكرار الماموغرام إذا أُجري خلال آخر 23 شهرًا.',
-                'تأكدي من موعد الفحص القادم مع مقدم الرعاية؛ قاعدة 23 شهرًا تحتاج اعتمادًا سريريًا.'
-            );
+            'قد تكونين ضمن الفئة العمرية للفحص الدوري بالماموغرام ابتداءً من عمر 40 سنة وفق المعلومات الموجودة في قاعدة المشروع، بشرط استيفاء بقية معايير الأهلية.',
 
-        }
+            'ناقشي حجز Mammography (تصوير الثدي بالأشعة السينية) مع مقدم الرعاية الصحية. هذه النتيجة ليست تأكيدًا نهائيًا للأهلية.',
 
-        else{
+            'routine'
 
-            showResult(
-                '✅',
-                'قد تكونين ضمن الفئة العمرية للفحص الدوري',
-                'قد تكونين ضمن فئة الفحص الدوري بالماموغرام ابتداءً من عمر 40 سنة وفق الملف.',
-                'تحققي من الأهلية وشروط الخدمة وموعد الفحص مع مقدم الرعاية.'
-            );
+        );
 
-        }
-
-        return;
     }
 
-    showResult(
+
+    return showResult(
+
         'ℹ️',
-        'لا تنطبق حاليًا معايير الفحص الروتيني المذكورة في قاعدة المشروع',
-        'وفق قاعدة العمل الأولية، يبدأ مسار متوسطات الخطورة من عمر 40 سنة. قد تختلف التوصية حسب عوامل الخطورة والتقييم الطبي.',
-        'إذا ظهر أي عرض في الثدي، اطلبي تقييمًا طبيًا مهما كان العمر.'
+
+        'Routine Screening Not Indicated by Current Rules',
+
+        'لا تنطبق عليكِ حاليًا معايير مسار الفحص الدوري المذكورة في قاعدة المشروع.',
+
+        'إذا ظهرت أعراض بالثدي، راجعي الطبيب بغض النظر عن العمر.',
+
+        'clinical'
+
     );
 
 }
+
+
+// ==========================================
+// COLORECTAL CANCER DECISION RULES
+// ==========================================
 
 function decideColorectal(a){
 
-    const symptoms=CRC_SYMPTOMS.some(q=>a[q.key]==='نعم');
+    const age = Number(a.age_years);
 
-    if(symptoms){
 
-        showResult(
+    // PRIORITY 1: Warning symptoms
+
+    const warningSymptoms = [
+
+        'rectal_bleeding_or_blood_stool',
+
+        'persistent_bowel_habit_change',
+
+        'incomplete_bowel_emptying',
+
+        'persistent_abdominal_pain',
+
+        'persistent_unexplained_bloating',
+
+        'unexplained_iron_deficiency_anemia',
+
+        'unexplained_weight_loss',
+
+        'persistent_fatigue_or_appetite_loss',
+
+        'persistent_stool_shape_or_frequency_change'
+
+    ];
+
+
+    const hasSymptoms = warningSymptoms.some(key=>{
+
+        return a[key] === 'نعم';
+
+    });
+
+
+    if(hasSymptoms){
+
+        return showResult(
+
             '⚠️',
-            'تقييم طبي تشخيصي مطلوب',
-            'وجود أعراض يستدعي مراجعة الطبيب لتقييم السبب، ولا ينبغي انتظار الفحص الروتيني.',
-            'إذا كان النزيف شديدًا أو صاحبه إغماء أو ألم شديد مع قيء وانتفاخ وعدم إخراج غازات أو براز، توجّه للطوارئ.'
+
+            'Medical Assessment Required',
+
+            'وجود عرض أو أكثر من الأعراض المذكورة يستدعي تقييمًا طبيًا تشخيصيًا لمعرفة السبب. لا يعني ذلك بالضرورة وجود سرطان.',
+
+            'راجعي الطبيب ولا تنتظري موعد الفحص الروتيني. عند النزيف الشديد أو الإغماء أو الألم الشديد مع القيء والانتفاخ وعدم إخراج الغازات أو البراز، توجهي للطوارئ.',
+
+            'diagnostic'
+
         );
 
-        return;
     }
 
-    if(a.last_fit_result==='إيجابية'){
 
-        showResult(
+    // PRIORITY 2: Positive FIT
+
+    if(a.last_fit_result === 'إيجابية'){
+
+        return showResult(
+
             '📋',
-            'يلزم استكمال التقييم بتنظير القولون',
-            'نتيجة FIT الإيجابية لا تعني بالضرورة وجود سرطان، لكنها تحتاج متابعة طبية وتنظير القولون.',
-            'لا تعيدي اختبار FIT بدلًا من التنظير؛ راجعي الطبيب/المركز لترتيب المتابعة.'
+
+            'Colonoscopy Follow-up Required',
+
+            'نتيجة FIT الإيجابية لا تعني بالضرورة وجود سرطان، لكنها تتطلب استكمال التقييم الطبي.',
+
+            'راجعي الطبيب لترتيب Colonoscopy (تنظير القولون). لا تعيدي اختبار FIT بدلًا من التنظير.',
+
+            'followup'
+
         );
 
-        return;
     }
 
-    const familyConcern=
-        a.family_history_crc==='نعم'||
-        a.family_history_crc==='لا أعلم'||
-        a.first_degree_relative_crc==='نعم'||
-        a.first_degree_relative_crc==='لا أعلم'||
-        a.family_lynch_or_fap==='نعم'||
-        a.family_lynch_or_fap==='لا أعلم';
 
-    const personalConcern=[
-        'سرطان القولون',
-        'زوائد لحمية',
-        'كلاهما',
-        'لا أعلم'
-    ].includes(a.personal_crc_or_polyps_history);
+    // PRIORITY 3: High-risk personal and genetic history
 
-    const ibdConcern=[
-        'التهاب القولون التقرحي',
-        'داء كرون',
-        'لا أعلم'
-    ].includes(a.ibd_history);
+    if(
 
-    const otherRisk=
-        a.childhood_radiation_history==='نعم'||
-        a.childhood_radiation_history==='لا أعلم';
+        ['سرطان القولون','زوائد لحمية','كلاهما','لا أعلم'].includes(a.personal_crc_or_polyps_history)
 
-    if(familyConcern||personalConcern||ibdConcern||otherRisk){
+        ||
 
-        showResult(
+        ['التهاب القولون التقرحي','داء كرون','لا أعلم'].includes(a.ibd_history)
+
+        ||
+
+        ['نعم','لا أعلم'].includes(a.family_lynch_or_fap)
+
+        ||
+
+        ['نعم','لا أعلم'].includes(a.childhood_radiation_history)
+
+    ){
+
+        return showResult(
+
             '📋',
-            'تحتاج إلى تقييم سريري لتحديد خطة الفحص',
-            'إجاباتك تتضمن تاريخًا عائليًا أو طبيًا قد يتطلب خطة مختلفة عن فحص متوسط الخطورة.',
-            'يحدد الطبيب نوع الفحص وعمر البدء والفواصل المناسبة؛ لا يصنف الموقع هذه الحالات آليًا.'
+
+            'High-Risk Clinical Review',
+
+            'التاريخ المرضي أو الجيني قد يستدعي خطة فحص مختلفة عن فحص متوسط الخطورة.',
+
+            'راجعي الطبيب لتحديد نوع الفحص وعمر البدء والفواصل المناسبة. لا يحدد التطبيق خطة متابعة تلقائية لهذه الحالات.',
+
+            'clinical'
+
         );
 
-        return;
     }
 
-    const age=Number(a.age_years);
 
-    if(age>=76&&age<=85){
+    // PRIORITY 4: Family history
 
-        showResult(
+    if(
+
+        ['نعم','لا أعلم'].includes(a.family_history_crc)
+
+        ||
+
+        ['نعم','لا أعلم'].includes(a.first_degree_relative_crc)
+
+    ){
+
+        return showResult(
+
+            '📋',
+
+            'Family History Assessment',
+
+            'التاريخ العائلي لسرطان القولون والمستقيم قد يؤثر في عمر بدء الفحص ونوعه.',
+
+            'راجعي الطبيب لتقييم صلة القرابة وعدد الأقارب وأعمار التشخيص. لا توجد عتبة آلية معتمدة في قاعدة المشروع.',
+
+            'clinical'
+
+        );
+
+    }
+
+
+    // AGE VALIDATION
+
+    if(!Number.isInteger(age) || age < 0 || age > 120){
+
+        return showResult(
+
             'ℹ️',
-            'قرار الفحص فردي',
-            'في هذه الفئة العمرية يعتمد قرار الفحص على الحالة الصحية والفحوص السابقة ورغبة الشخص، وفق المرجع الدولي المذكور في ملف المشروع.',
-            'ناقش القرار مع الطبيب؛ هذه ليست قاعدة مستقلة معتمدة للبرنامج السعودي.'
+
+            'Review Information',
+
+            'تعذر تحديد المسار من العمر المدخل.',
+
+            'تحققي من البيانات المدخلة.',
+
+            'clinical'
+
         );
 
-        return;
     }
 
-    if(age>85){
 
-        showResult(
-            'ℹ️',
-            'ناقش الحاجة للفحص مع الطبيب',
-            'لا يوصى عادة بالفحص الروتيني بعد 85 سنة وفق المرجع الدولي المذكور في الملف.',
-            'الأعراض تستلزم تقييمًا طبيًا مهما كان العمر.'
-        );
+    // PRIORITY 5: Previous colonoscopy
 
-        return;
-    }
+    if(
 
-    if(age>=45&&age<=75){
+        a.last_colonoscopy_date &&
 
-        if(a.last_colonoscopy_result==='طبيعي'){
+        !['Never','Unknown'].includes(a.last_colonoscopy_date)
 
-            showResult(
+    ){
+
+        if(!validPastDate(a.last_colonoscopy_date)){
+
+            return showResult(
+
                 '📋',
-                'راجعي سجل التنظير مع الطبيب',
-                'ذكر ملف المشروع فترة 10 سنوات بعد تنظير طبيعي لدى متوسط الخطورة فقط.',
-                'لا يطبق الموقع فترة 10 سنوات تلقائيًا؛ يلزم تأكيد النتيجة ومتوسط الخطورة سريريًا.'
+
+                'Date Verification Required',
+
+                'تعذر التحقق من تاريخ تنظير القولون السابق.',
+
+                'راجعي التاريخ مع مقدم الرعاية الصحية.',
+
+                'clinical'
+
             );
 
-            return;
         }
 
-        if(a.last_fit_result==='سلبية'){
 
-            showResult(
+        if(a.last_colonoscopy_result !== 'طبيعي'){
+
+            return showResult(
+
                 '📋',
-                'قد يكون التذكير السنوي بـ FIT مناسبًا بعد التأكيد',
-                'يذكر ملف المشروع إعادة FIT سنويًا بعد النتيجة السلبية لمتوسطي الخطورة.',
-                'تأكدي من تاريخ الاختبار وأهليتك مع مقدم الرعاية؛ لا ينشئ الموقع موعدًا طبيًا.'
+
+                'Colonoscopy Result Review',
+
+                'نتيجة تنظير القولون السابقة غير طبيعية أو غير مكتملة أو غير معروفة.',
+
+                'راجعي الطبيب لتحديد فترة المتابعة المناسبة. لا يمكن للتطبيق تحديدها تلقائيًا.',
+
+                'clinical'
+
             );
 
-            return;
         }
 
-        showResult(
+
+        if(withinLast10Years(a.last_colonoscopy_date)){
+
+            return showResult(
+
+                '🗓️',
+
+                'Colonoscopy Screening Not Due Yet',
+
+                'كانت نتيجة تنظير القولون السابقة طبيعية ولم تمر 10 سنوات على إجرائه.',
+
+                'تحققي من موعد الفحص القادم مع الطبيب بعد التأكد من انطباق معايير متوسط الخطورة.',
+
+                'routine'
+
+            );
+
+        }
+
+
+        return showResult(
+
             '✅',
-            'قد تكون ضمن الفئة العمرية للفحص الدوري',
-            'قد تكون ضمن الفئة العمرية 45–75 سنة لمسار فحص متوسط الخطورة، إذا أكد مقدم الرعاية عدم وجود عوامل خطورة أو موانع أخرى.',
-            'يمكن مناقشة اختبار FIT مع مركز الرعاية الصحية الأولية.'
+
+            'Colonoscopy Follow-up Review',
+
+            'مر 10 سنوات أو أكثر على تنظير القولون السابق ذي النتيجة الطبيعية.',
+
+            'ناقشي موعد الفحص القادم مع الطبيب بعد التأكد من انطباق معايير متوسط الخطورة.',
+
+            'routine'
+
         );
 
-        return;
     }
 
-    showResult(
+
+    if(a.last_colonoscopy_date === 'Unknown'){
+
+        return showResult(
+
+            '📋',
+
+            'Previous Colonoscopy Review',
+
+            'لا يمكن تحديد موعد الفحص القادم دون معرفة تاريخ ونتيجة التنظير السابق.',
+
+            'راجعي سجل الفحوصات أو تواصلي مع مقدم الرعاية الصحية.',
+
+            'clinical'
+
+        );
+
+    }
+
+
+    // PRIORITY 6: Previous FIT
+
+    if(a.previous_fit === 'نعم'){
+
+        if(
+
+            !['سلبية','إيجابية'].includes(a.last_fit_result)
+
+        ){
+
+            return showResult(
+
+                '📋',
+
+                'FIT Result Review Required',
+
+                'لم يتم التأكد من نتيجة اختبار FIT السابق.',
+
+                'راجعي المركز الصحي للحصول على النتيجة قبل تحديد الفحص التالي.',
+
+                'clinical'
+
+            );
+
+        }
+
+
+        if(
+
+            !a.last_fit_date ||
+
+            ['Never','Unknown'].includes(a.last_fit_date)
+
+        ){
+
+            return showResult(
+
+                '📋',
+
+                'FIT Date Review Required',
+
+                'تم تسجيل اختبار FIT سابق، لكن لم يتم التأكد من تاريخ إجرائه.',
+
+                'راجعي تاريخ الاختبار السابق لتحديد موعد الفحص القادم.',
+
+                'clinical'
+
+            );
+
+        }
+
+
+        if(!validPastDate(a.last_fit_date)){
+
+            return showResult(
+
+                '📋',
+
+                'FIT Date Verification Required',
+
+                'تعذر التحقق من تاريخ اختبار FIT السابق.',
+
+                'راجعي التاريخ مع مقدم الرعاية الصحية.',
+
+                'clinical'
+
+            );
+
+        }
+
+
+        if(a.last_fit_result === 'سلبية'){
+
+            if(withinLast12Months(a.last_fit_date)){
+
+                return showResult(
+
+                    '🗓️',
+
+                    'FIT Screening Not Due Yet',
+
+                    'نتيجة اختبار FIT السابق سلبية، ولم تمر سنة كاملة على إجرائه.',
+
+                    'يتم تحديد موعد الاختبار القادم بالتنسيق مع مقدم الرعاية الصحية.',
+
+                    'routine'
+
+                );
+
+            }
+
+
+            return showResult(
+
+                '✅',
+
+                'Annual FIT Screening Follow-up',
+
+                'مر عام أو أكثر على اختبار FIT السابق ذي النتيجة السلبية.',
+
+                'ناقشي إعادة اختبار FIT (اختبار البراز المناعي للكشف عن الدم الخفي) مع مقدم الرعاية الصحية.',
+
+                'routine'
+
+            );
+
+        }
+
+    }
+
+
+    // PRIORITY 7: Age-based assessment
+
+    if(age >= 76 && age <= 85){
+
+        return showResult(
+
+            'ℹ️',
+
+            'Individual Clinical Decision',
+
+            'قرار الفحص في هذه الفئة العمرية فردي ويعتمد على الحالة الصحية والفحوصات السابقة وفق المرجع المذكور في ملف المشروع.',
+
+            'ناقشي الحاجة للفحص مع الطبيب.',
+
+            'clinical'
+
+        );
+
+    }
+
+
+    if(age > 85){
+
+        return showResult(
+
+            'ℹ️',
+
+            'Routine Screening Usually Not Recommended',
+
+            'لا يوصى عادة بالفحص الروتيني بعد عمر 85 سنة وفق المرجع المذكور في ملف المشروع.',
+
+            'الأعراض تستلزم تقييمًا طبيًا مهما كان العمر.',
+
+            'clinical'
+
+        );
+
+    }
+
+
+    if(age >= 45 && age <= 75){
+
+        return showResult(
+
+            '✅',
+
+            'Potential Average-Risk Screening Path',
+
+            'قد تكون ضمن الفئة العمرية 45–75 سنة لمسار الفحص الدوري، بشرط تأكيد متوسط الخطورة سريريًا وعدم وجود عوامل أخرى.',
+
+            'يمكن مناقشة FIT (اختبار البراز المناعي للكشف عن الدم الخفي) مع مقدم الرعاية الصحية. لا يؤكد الموقع أهليتك النهائية للفحص.',
+
+            'routine'
+
+        );
+
+    }
+
+
+    return showResult(
+
         'ℹ️',
-        'لا تنطبق حاليًا معايير الفحص الروتيني المذكورة في قاعدة المشروع',
-        'وفق قاعدة العمل الأولية، يبدأ مسار متوسطات الخطورة من عمر 45 سنة.',
-        'إذا ظهرت أعراض أو تغيرت معلوماتك الصحية، راجع الطبيب ولا تنتظر سن الفحص الروتيني.'
+
+        'Routine Screening Not Indicated by Current Rules',
+
+        'لا تنطبق حاليًا معايير العمر لمسار الفحص الروتيني المذكور في قاعدة المشروع.',
+
+        'إذا ظهرت أعراض أو تغيرت حالتك الصحية، راجع الطبيب ولا تنتظر سن الفحص الروتيني.',
+
+        'clinical'
+
     );
 
 }
 
-function monthsSince(dateStr){
 
-    const d=new Date(dateStr+'T00:00:00');
+// ==========================================
+// DISPLAY RESULT
+// ==========================================
 
-    if(Number.isNaN(d.getTime()))return null;
+function showResult(icon,title,description,next,category){
 
-    const now=new Date();
-
-    return (now.getFullYear()-d.getFullYear())*12+
-    (now.getMonth()-d.getMonth());
-
-}
-
-function showResult(icon,title,desc,next=''){
-
-    lastResult={icon,title,desc,next};
+    lastResult = {
+        icon,
+        title,
+        description,
+        next,
+        category
+    };
 
     hideAllScreens();
 
     document.getElementById('screen-result').classList.remove('hidden');
 
-    document.getElementById('result-icon').innerText=icon;
-    document.getElementById('result-title').innerText=title;
-    document.getElementById('result-desc').innerText=desc;
-    document.getElementById('result-next').innerText=next;
+    document.getElementById('result-icon').innerText = icon;
 
-}
+    document.getElementById('result-title').innerText = title;
 
-function requestLocationAndOpenMaps(){
+    document.getElementById('result-description').innerText = description;
 
-    if(navigator.geolocation){
+    document.getElementById('result-next').innerHTML = `
 
-        navigator.geolocation.getCurrentPosition(
+        <h3 class="font-bold text-deepSage mb-2">
+            ما الخطوة التالية؟
+        </h3>
 
-            position=>{
+        <p>${next}</p>
 
-                const lat=position.coords.latitude;
-                const lng=position.coords.longitude;
-
-                window.open(
-                    `https://www.google.com/maps/search/مراكز+صحية+ومستشفيات/@${lat},${lng},14z`,
-                    '_blank'
-                );
-
-            },
-
-            ()=>{
-
-                alert('يرجى السماح للمتصفح بالوصول إلى موقعك لعرض المراكز القريبة بدقة.');
-
-                window.open(
-                    'https://www.google.com/maps/search/مراكز+صحية+ومستشفيات',
-                    '_blank'
-                );
-
-            },
-
-            {timeout:10000,enableHighAccuracy:true}
-
-        );
-
-    }
-
-    else{
-
-        alert('متصفحك لا يدعم خاصية تحديد الموقع الجغرافي.');
-
-        window.open(
-            'https://www.google.com/maps/search/مراكز+صحية+ومستشفيات',
-            '_blank'
-        );
-
-    }
-
-}
-
-function openEducation(){
-
-    document.getElementById('modal-title').innerText='🎥 معلومات توعوية وكيف يتم الفحص؟';
-
-    let card='';
-
-    if(currentType==='breast'){
-
-        card=`
-        <div class="bg-teal-50 border border-teal-200 rounded-2xl p-4 text-center space-y-3">
-
-            <div class="font-bold text-teal-900">
-                🎗️ فيديو توعوي: فحص سرطان الثدي والماموجرام
-            </div>
-
-            <p class="text-xs text-slate-600">
-                شاهدي الفيديو التوضيحي لمعرفة تفاصيل الفحص.
-            </p>
-
-            <a href="https://youtu.be/somcl-bY0fc"
-            target="_blank" rel="noopener"
-            class="inline-block bg-red-600 text-white font-bold py-2.5 px-6 rounded-xl">
-                ▶️ تشغيل الفيديو على يوتيوب
-            </a>
-
-        </div>`;
-
-    }
-
-    else{
-
-        card=`
-        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-4 text-center space-y-3">
-
-            <div class="font-bold text-blue-900">
-                🩺 فيديو توعوي: فحص سرطان القولون والمستقيم
-            </div>
-
-            <p class="text-xs text-slate-600">
-                شاهدي الفيديو التوضيحي لمعرفة أهمية الكشف المبكر وفحص FIT.
-            </p>
-
-            <a href="https://youtu.be/xfQjbDC7S6s"
-            target="_blank" rel="noopener"
-            class="inline-block bg-red-600 text-white font-bold py-2.5 px-6 rounded-xl">
-                ▶️ تشغيل الفيديو على يوتيوب
-            </a>
-
-        </div>`;
-
-    }
-
-    document.getElementById('modal-body').innerHTML=`
-        ${card}
-
-        <p class="leading-relaxed text-slate-700">
-            <strong>نبذة توعوية:</strong>
-            تساعد الفحوصات المناسبة للفئة المستهدفة على اكتشاف بعض التغيرات مبكرًا.
-            اختيار الفحص وتوقيته يعتمد على العمر والتاريخ الصحي وتوصية مقدم الرعاية.
-        </p>
-
-        <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800">
-            المعلومات التوعوية لا تغني عن الاستشارة الطبية، ولا يستخدم الموقع لتشخيص السرطان.
-        </div>
     `;
 
-    document.getElementById('modal-info').classList.remove('hidden');
+    renderResultMethod();
 
 }
 
-function closeModal(){
 
-    document.getElementById('modal-info').classList.add('hidden');
+// ==========================================
+// RESULT METHOD
+// ==========================================
+
+function renderResultMethod(){
+
+    const container = document.getElementById('result-method');
+
+    let html = '';
+
+    if(currentType === 'breast'){
+
+        html = `
+
+        <div class="question-box text-right">
+
+            <h3 class="font-extrabold text-deepSage mb-2">
+                Mammography
+            </h3>
+
+            <p class="text-sm leading-7">
+                تصوير الثدي بالأشعة السينية، ويستخدم للكشف المبكر عن التغيرات والكتل الصغيرة.
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+    else{
+
+        html = `
+
+        <div class="question-box text-right">
+
+            <h3 class="font-extrabold text-deepSage mb-2">
+                FIT – Fecal Immunochemical Test
+            </h3>
+
+            <p class="text-sm leading-7">
+                اختبار البراز المناعي للكشف عن الدم الخفي في البراز.
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+    container.innerHTML = html;
+
+}
+
+
+// ==========================================
+// EDUCATION PAGE
+// ==========================================
+
+function showEducation(){
+
+    hideAllScreens();
+
+    document.getElementById('screen-education').classList.remove('hidden');
+
+    const container = document.getElementById('education-content');
+
+    const methods = SCREENING_METHODS[currentType];
+
+    let html = '';
+
+    methods.forEach(method=>{
+
+        html += `
+
+        <div class="question-box">
+
+            <h3 class="font-extrabold text-deepSage text-lg mb-2">
+                ${method.name}
+            </h3>
+
+            <p class="text-sm leading-7 mb-3">
+                ${method.definition}
+            </p>
+
+            <div class="info-box text-sm">
+
+                <strong>Screening Interval (فترة الفحص):</strong>
+
+                <p>${method.interval}</p>
+
+            </div>
+
+            <p class="text-xs text-gray-500 mt-3">
+                ${method.note}
+            </p>
+
+        </div>
+
+        `;
+
+    });
+
+
+    html += `
+
+    <h3 class="section-title">
+        Medical Glossary (المصطلحات الطبية)
+    </h3>
+
+    `;
+
+    GLOSSARY.forEach(term=>{
+
+        html += `
+
+        <div class="border-b border-beige py-3">
+
+            <strong class="text-deepSage">
+                ${term[0]}
+            </strong>
+
+            <p class="text-sm mt-1">
+                ${term[1]}
+            </p>
+
+        </div>
+
+        `;
+
+    });
+
+
+    container.innerHTML = html;
+
+}
+
+
+// ==========================================
+// HEALTH SERVICES
+// ==========================================
+
+function showServices(){
+
+    hideAllScreens();
+
+    document.getElementById('screen-services').classList.remove('hidden');
+
+    const container = document.getElementById('services-content');
+
+    let html = '';
+
+    if(currentType === 'breast'){
+
+        html = `
+
+        <div class="question-box">
+
+            <h3 class="font-bold text-deepSage">
+                Sehhaty (صحتي)
+            </h3>
+
+            <p class="text-sm leading-7 mt-2">
+                حجز موعد في المركز الصحي للحصول على التوجيه أو التحويل إلى خدمات الكشف المبكر.
+            </p>
+
+            <a href="https://www.sehhaty.sa/"
+            target="_blank"
+            rel="noopener"
+            class="primary-btn inline-block rounded-xl px-5 py-2 mt-3">
+                زيارة صحتي
+            </a>
+
+        </div>
+
+
+        <div class="question-box">
+
+            <h3 class="font-bold text-deepSage">937</h3>
+
+            <p class="text-sm mt-2 leading-7">
+                الاتصال للاستفسار عن الخدمات والمراكز وآلية الحجز والتوجيه.
+            </p>
+
+            <a href="tel:937"
+            class="primary-btn inline-block rounded-xl px-5 py-2 mt-3">
+                اتصال 937
+            </a>
+
+        </div>
+
+
+        <div class="question-box">
+
+            <h3 class="font-bold text-deepSage">
+                Mobile Clinics (العيادات المتنقلة)
+            </h3>
+
+            <p class="text-sm leading-7 mt-2">
+                يمكن الاستفسار عن العيادات المتنقلة وعيادات صحة المرأة والطفل ومواقع توفرها.
+            </p>
+
+            <a href="https://www.google.com/maps/search/عيادات+الكشف+المبكر+عن+سرطان+الثدي"
+            target="_blank"
+            rel="noopener"
+            class="primary-btn inline-block rounded-xl px-5 py-2 mt-3">
+                البحث عن المراكز
+            </a>
+
+        </div>
+
+        `;
+
+    }
+
+    else{
+
+        html = `
+
+        <div class="question-box">
+
+            <h3 class="font-bold text-deepSage">
+                Sehhaty (صحتي)
+            </h3>
+
+            <p class="text-sm leading-7 mt-2">
+                حجز موعد في عيادة طب الأسرة أو المركز الصحي لتقييم عوامل الخطورة ومناقشة الفحص المناسب.
+            </p>
+
+            <a href="https://www.sehhaty.sa/"
+            target="_blank"
+            rel="noopener"
+            class="primary-btn inline-block rounded-xl px-5 py-2 mt-3">
+                زيارة صحتي
+            </a>
+
+        </div>
+
+
+        <div class="question-box">
+
+            <h3 class="font-bold text-deepSage">
+                Primary Health Care Center
+            </h3>
+
+            <p class="text-sm leading-7 mt-2">
+                مركز الرعاية الصحية الأولية لمراجعة طبيب الأسرة وتقييم عوامل الخطورة وتحديد الفحص المناسب.
+            </p>
+
+            <a href="https://www.google.com/maps/search/مراكز+الرعاية+الصحية+الأولية"
+            target="_blank"
+            rel="noopener"
+            class="primary-btn inline-block rounded-xl px-5 py-2 mt-3">
+                البحث عن المراكز
+            </a>
+
+        </div>
+
+
+        <div class="question-box">
+
+            <h3 class="font-bold text-deepSage">937</h3>
+
+            <p class="text-sm leading-7 mt-2">
+                الاستفسار عن شروط البرنامج والمراكز وآلية الحجز.
+            </p>
+
+            <a href="tel:937"
+            class="primary-btn inline-block rounded-xl px-5 py-2 mt-3">
+                اتصال 937
+            </a>
+
+        </div>
+
+        `;
+
+    }
+
+
+    html += `
+
+    <div class="question-box">
+
+        <h3 class="font-bold text-deepSage">
+            Nearby Health Centers
+        </h3>
+
+        <p class="text-sm mt-2 leading-7">
+            البحث عن المراكز الصحية والمستشفيات القريبة.
+        </p>
+
+        <button onclick="openNearbyCenters()"
+        class="primary-btn rounded-xl px-5 py-3 mt-3 w-full">
+            📍 عرض المراكز القريبة
+        </button>
+
+    </div>
+
+    `;
+
+    container.innerHTML = html;
+
+}
+
+
+// ==========================================
+// GOOGLE MAPS
+// ==========================================
+
+function openNearbyCenters(){
+
+    const query = currentType === 'breast'
+        ? 'مراكز فحص سرطان الثدي'
+        : 'مراكز فحص القولون والمستقيم';
+
+    const url = 'https://www.google.com/maps/search/'
+        + encodeURIComponent(query);
+
+    window.open(url,'_blank');
+
+}
+
+
+// ==========================================
+// BACK NAVIGATION
+// ==========================================
+
+function backToResult(){
+
+    hideAllScreens();
+
+    document.getElementById('screen-result').classList.remove('hidden');
 
 }
 
 </script>
+
 </body>
 </html>
