@@ -1,24 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EarlyPath | درب الكشف المبكر</title>
-
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box}
-body{font-family:'Cairo',sans-serif;background:#F7F1E8;color:#554A45}
-button,input,select{font:inherit}
+body{font-family:Cairo,sans-serif;background:#F7F1E8;color:#554A45}
+button,input{font:inherit}
 .card{background:white;border:1px solid #E8D8C5;border-radius:22px;padding:25px;box-shadow:0 5px 20px #554a450d}
 .btn{padding:13px 18px;border-radius:13px;font-weight:700}
 .primary{background:#55766D;color:white}
-.choice{display:block;width:100%;padding:14px;margin:8px 0;text-align:start;border:1.5px solid #E8D8C5;border-radius:13px;background:white}
+.choice{display:block;width:100%;padding:13px;margin:8px 0;text-align:start;border:1.5px solid #E8D8C5;border-radius:13px;background:white}
 .choice.selected{border-color:#55766D;background:#E7EDE4}
-.field{width:100%;padding:12px;border:1px solid #E8D8C5;border-radius:12px;background:#F7F1E8}
 .hidden{display:none!important}
 .pill{background:#E7EDE4;color:#55766D;padding:5px 12px;border-radius:20px;font-size:12px}
 </style>
@@ -41,52 +38,46 @@ button,input,select{font:inherit}
 
 <main class="max-w-3xl w-full mx-auto px-4 py-8 flex-1">
 
-<!-- HOME -->
-
 <section id="home" class="card text-center">
 <div class="text-5xl mb-4">🌱</div>
 <h1 class="text-3xl font-extrabold text-[#55766D]">EarlyPath</h1>
-<p id="tagline" class="text-lg mt-3">درب الكشف المبكر</p>
+<p class="text-lg mt-3">درب الكشف المبكر</p>
 <p class="text-lg mt-2" dir="ltr">Every early step makes a difference.</p>
-<p id="intro" class="my-7">كل خطوة مبكرة تصنع فرقًا</p>
+<p class="my-7">كل خطوة مبكرة تصنع فرقًا</p>
 
-<h3 id="languageTitle" class="font-bold mb-4">اختاري اللغة</h3>
+<h3 id="languageTitle" class="font-bold mb-4">اختيار اللغة / Choose your language</h3>
 
 <div class="grid sm:grid-cols-2 gap-4">
 <button class="choice text-center" onclick="setLanguage('ar')">🇸🇦 العربية</button>
 <button class="choice text-center" onclick="setLanguage('en')">🇬🇧 English</button>
 </div>
 
-<p id="disclaimer" class="text-xs mt-6 text-gray-500">
-أداة توعوية أولية ولا تقدم تشخيصًا طبيًا.
+<p class="text-xs mt-6 text-gray-500">
+أداة توعوية أولية لا تقدم تشخيصًا طبيًا ولا تستبدل مراجعة الطبيب.
 </p>
 </section>
 
-<!-- CHOOSE TYPE -->
-
 <section id="type" class="card hidden">
-<h2 id="typeTitle" class="text-2xl font-bold text-[#55766D] mb-3">اختيار نوع الفحص</h2>
-<p id="typeQuestion" class="mb-5">ما نوع التقييم الذي تبحث عنه؟</p>
+<h2 id="typeTitle" class="text-2xl font-bold text-[#55766D] mb-3"></h2>
+<p id="typeQuestion" class="mb-5"></p>
 
 <div class="grid sm:grid-cols-2 gap-4">
 <button class="choice text-center" onclick="startPath('breast')">
 <div class="text-4xl mb-3">🎗️</div>
-<b id="breastLabel">سرطان الثدي</b>
+<b id="breastLabel"></b>
 </button>
 
 <button class="choice text-center" onclick="startPath('colon')">
 <div class="text-4xl mb-3">🩺</div>
-<b id="colonLabel">سرطان القولون والمستقيم</b>
+<b id="colonLabel"></b>
 </button>
 </div>
 
-<button class="btn border mt-5 w-full" onclick="goHome()" id="backHome">العودة</button>
+<button class="btn border mt-5 w-full" onclick="goHome()" id="backHome"></button>
 </section>
 
-<!-- QUESTIONS -->
-
 <section id="questions" class="card hidden">
-<div class="flex justify-between items-center">
+<div class="flex justify-between">
 <span class="pill" id="pathLabel"></span>
 <span class="text-xs text-gray-500" id="stepLabel"></span>
 </div>
@@ -95,12 +86,10 @@ button,input,select{font:inherit}
 <div id="questionBody"></div>
 
 <div class="flex gap-3 mt-7">
-<button class="btn border flex-1" onclick="goType()" id="backButton">رجوع</button>
-<button class="btn primary flex-1" onclick="nextQuestion()" id="nextButton">متابعة</button>
+<button class="btn border flex-1" onclick="goType()" id="backButton"></button>
+<button class="btn primary flex-1" onclick="nextQuestion()" id="nextButton"></button>
 </div>
 </section>
-
-<!-- RESULT -->
 
 <section id="result" class="card hidden">
 <div class="text-center">
@@ -112,17 +101,15 @@ button,input,select{font:inherit}
 <div id="resultNote" class="bg-[#F7F1E8] p-4 rounded-xl mt-6 leading-8"></div>
 <div id="resultActions" class="grid sm:grid-cols-2 gap-3 mt-6"></div>
 
-<button class="btn border w-full mt-6" onclick="goHome()" id="restartButton">العودة للرئيسية</button>
+<button class="btn border w-full mt-6" onclick="goHome()" id="restartButton"></button>
 </section>
-
-<!-- EMERGENCY -->
 
 <section id="emergency" class="card hidden">
 <div class="text-center text-4xl">🚨</div>
 <h2 id="emergencyTitle" class="text-xl font-bold text-red-700 text-center my-4"></h2>
 <p id="emergencyText" class="leading-8"></p>
-<a href="tel:997" class="btn primary block text-center mt-5" id="emergencyCall">اتصال بالإسعاف 997</a>
-<button class="btn border w-full mt-4" onclick="showResult()" id="emergencyBack">العودة</button>
+<a href="tel:997" class="btn primary block text-center mt-5" id="emergencyCall"></a>
+<button class="btn border w-full mt-4" onclick="showResult()" id="emergencyBack"></button>
 </section>
 
 </main>
@@ -130,5 +117,552 @@ button,input,select{font:inherit}
 <footer class="bg-white border-t border-[#E8D8C5] text-center py-5 text-xs">
 EarlyPath – درب الكشف المبكر
 </footer>
+
+<script>
+const videos={
+breast:"https://youtu.be/somcl-bY0fc",
+colon:"https://youtu.be/xfQjbDC7S6s"
+};
+
+const words={
+ar:{
+type:"اختيار نوع الفحص",question:"ما نوع التقييم الذي تبحث عنه؟",
+breast:"سرطان الثدي",colon:"سرطان القولون والمستقيم",
+back:"رجوع",next:"متابعة",home:"العودة للرئيسية",
+gender:"ما الجنس؟",female:"أنثى",male:"ذكر",
+age:"كم عمرك؟",yes:"نعم",no:"لا",unknown:"لا أعلم",
+symB:"هل توجد حاليًا أي تغيرات في الثدي؟",
+symC:"هل توجد حاليًا أعراض أو تغيرات في الإخراج؟",
+symListB:"ما الأعراض التي تعاني منها؟ يمكنك اختيار أكثر من عرض.",
+symListC:"ما الأعراض التي تعاني منها؟ يمكنك اختيار أكثر من عرض.",
+breastSymptoms:[
+"وجود كتلة في الثدي أو تحت الإبط",
+"إفرازات غير طبيعية من الحلمة",
+"تغير في شكل الثدي أو حجمه",
+"ألم مستمر وغير معتاد في الثدي"
+],
+colonSymptoms:[
+"وجود دم في البراز أو نزيف من المستقيم",
+"إمساك أو إسهال مستمر",
+"الشعور بعدم إفراغ الأمعاء بالكامل",
+"ألم أو تقلصات مستمرة في البطن",
+"انتفاخ مستمر وغير مفسر",
+"فقر دم أو فقد دم غير مفسر",
+"فقدان الوزن دون سبب واضح",
+"فقدان الشهية أو التعب والضعف المستمر",
+"تغير مستمر في شكل البراز"
+],
+symTitle:"توجيه طبي مطلوب",
+symDesc:"الأعراض التي حددتها تستدعي مراجعة الطبيب لتقييم الحالة ومعرفة السبب. لا تعني هذه الأعراض بالضرورة وجود سرطان، لكنها لا ينبغي إهمالها. لا ينبغي الاكتفاء بأداة تحديد آلية الفحص.",
+nextSteps:"ما الخطوة التالية؟",
+nearby:"اعثر على مركز قريب",
+video:"الفيديو التوعوي",
+emergency:"تنبيه للحالات الطارئة",
+emergencyText:"إذا كان لديك نزيف شديد أو دوخة شديدة أو إغماء أو ألم شديد بالبطن مصحوب بقيء أو انتفاخ وعدم القدرة على إخراج الغازات أو البراز، فتوجه إلى الطوارئ فورًا.",
+familyB:"هل يوجد تاريخ عائلي للإصابة بسرطان الثدي أو المبيض؟",
+familyC:"هل يوجد تاريخ عائلي للإصابة بسرطان القولون والمستقيم أو الزوائد اللحمية؟",
+relation:"ما صلة القرابة بالشخص المصاب؟",
+relatives:["الأم","الأخت","الابنة","الجدة","العمة","الخالة","الأب","الأخ","الابن","الجد","العم","الخال","قريبة/قريب آخر"],
+other:"يرجى تحديد صلة القرابة",
+diagnosisAge:"كم كان عمر القريب عند التشخيص؟",
+under50:"أقل من 50 سنة",over50:"50 سنة أو أكثر",
+radiation:"هل سبق التعرض للعلاج الإشعاعي لمنطقة الصدر بين عمر 10 و30 سنة؟",
+mammogram:"متى أجريت آخر فحص Mammography (تصوير الثدي بالأشعة السينية)؟",
+last23:"خلال آخر 23 شهرًا",old23:"منذ 23 شهرًا أو أكثر",
+never:"لم أجرِ الفحص من قبل",dontRemember:"لا أتذكر",
+pregnant:"هل يوجد حمل أو رضاعة حاليًا؟",
+implants:"هل توجد غرسات أو عمليات سابقة في الثدي؟",
+personalB:"هل سبق تشخيص سرطان الثدي أو المبيض؟",
+gene:"هل سبق إبلاغك بوجود طفرة جينية مرتبطة بزيادة خطر سرطان الثدي مثل BRCA1 أو BRCA2؟",
+geneName:"هل تعرف اسم الطفرة الجينية؟",
+geneOptions:["BRCA1","BRCA2","PALB2","TP53","طفرة أخرى","لا أتذكر اسمها"],
+personalC:"هل سبق الإصابة بسرطان القولون أو المستقيم أو إزالة زوائد لحمية؟",
+condition:"ما الحالة التي سبق حدوثها؟",
+crcOptions:["سرطان القولون والمستقيم","إزالة الزوائد اللحمية","كلاهما"],
+whenCondition:"متى كان آخر إجراء متعلق بهذه الحالة؟",
+whenOptions:["خلال آخر سنة","منذ سنة إلى 3 سنوات","منذ 3 إلى 5 سنوات","منذ أكثر من 5 سنوات","لا أتذكر"],
+plan:"هل توجد خطة متابعة أو موعد متابعة من الطبيب؟",
+ibd:"هل تعاني من أحد أمراض الأمعاء الالتهابية المزمنة؟",
+ibdOptions:["التهاب القولون التقرحي (Ulcerative Colitis)","داء كرون (Crohn’s Disease)","لا أعاني من أي منهما","لا أعلم"],
+lynch:"هل يوجد في العائلة تاريخ للإصابة بأحد المتلازمات الوراثية التالية؟",
+lynchOptions:["متلازمة لينش (Lynch Syndrome)","داء السلائل الغدي العائلي (FAP)","لا","لا أعلم"],
+childRadiation:"هل سبق التعرض للعلاج الإشعاعي خلال مرحلة الطفولة؟",
+scope:"هل سبق إجراء تنظير القولون (Colonoscopy)؟",
+scopeWhen:"متى أجريت آخر تنظير؟",
+scopeOptions:["خلال آخر 5 سنوات","منذ 5 إلى 10 سنوات","منذ أكثر من 10 سنوات","لا أتذكر"],
+fit:"هل سبق إجراء اختبار الدم الخفي في البراز (FIT)؟",
+fitResult:"ما نتيجة آخر اختبار FIT؟",
+negative:"سلبي",positive:"إيجابي",
+eligible:"قد تكون ضمن الفئة الموصى لها بالفحص",
+eligibleDesc:"بناءً على إجاباتك، قد تكون ضمن الفئة المناسبة للفحص الدوري وفق الإرشادات المعتمدة. يجب تأكيد الأهلية مع مقدم الرعاية الصحية.",
+custom:"قد تحتاج إلى خطة فحص مخصصة",
+customDesc:"تشير إجاباتك إلى وجود عامل خطورة أو تاريخ طبي يستدعي مراجعة الطبيب لتحديد نوع الفحص وتوقيته المناسبين.",
+notEligible:"لا تحتاج إلى فحص دوري حاليًا وفق إجاباتك",
+notEligibleDesc:"بناءً على المعلومات المدخلة، لا تنطبق حاليًا معايير الفحص الدوري المذكورة. يمكنك الاطلاع على المعلومات التوعوية وإعادة تقييم الأهلية عند بلوغ العمر الموصى به أو تغير عوامل الخطورة.",
+education:"معلومات توعوية",centers:"المراكز القريبة",
+locationPrompt:"سيتم فتح خرائط Google للبحث عن المراكز القريبة. هل تريد المتابعة؟",
+emTitle:"تنبيه للحالات الطارئة",emCall:"اتصل بالإسعاف 997",
+select:"يرجى اختيار إجابة للمتابعة.",
+ageBOptions:["أقل من 30 سنة","من 30 إلى 39 سنة","40 سنة فأكثر"],
+ageCOptions:["أقل من 40 سنة","من 40 إلى 75 سنة","من 76 إلى 85 سنة","أكثر من 85 سنة"]
+},
+en:{
+type:"Choose a screening pathway",question:"Which assessment are you looking for?",
+breast:"Breast cancer",colon:"Colorectal cancer",
+back:"Back",next:"Continue",home:"Home",
+gender:"What is your sex?",female:"Female",male:"Male",
+age:"How old are you?",yes:"Yes",no:"No",unknown:"I don't know",
+symB:"Are you currently experiencing any breast changes?",
+symC:"Are you currently experiencing bowel symptoms or changes?",
+symListB:"Which symptoms are present? Select all that apply.",
+symListC:"Which symptoms are present? Select all that apply.",
+breastSymptoms:[
+"A lump in the breast or underarm",
+"Unusual nipple discharge",
+"Change in breast shape or size",
+"Persistent or unusual breast pain"
+],
+colonSymptoms:[
+"Blood in stool or rectal bleeding",
+"Persistent constipation or diarrhea",
+"Feeling that the bowel does not empty completely",
+"Persistent abdominal pain or cramps",
+"Persistent unexplained bloating",
+"Unexplained anemia or blood loss",
+"Unexplained weight loss",
+"Persistent loss of appetite, fatigue or weakness",
+"Persistent change in stool shape"
+],
+symTitle:"Medical evaluation recommended",
+symDesc:"The symptoms selected warrant medical evaluation to identify the cause. They do not necessarily mean cancer, but should not be ignored. Do not rely on automated screening eligibility when symptoms are present.",
+nextSteps:"Next steps",nearby:"Find a nearby center",
+video:"Educational video",emergency:"Emergency warning",
+emergencyText:"Seek emergency care for heavy bleeding, severe dizziness, fainting, or severe abdominal pain with vomiting or swelling and inability to pass gas or stool.",
+familyB:"Is there a family history of breast or ovarian cancer?",
+familyC:"Is there a family history of colorectal cancer or polyps?",
+relation:"What is your relationship to the affected relative?",
+relatives:["Mother","Sister","Daughter","Grandmother","Paternal aunt","Maternal aunt","Father","Brother","Son","Grandfather","Paternal uncle","Maternal uncle","Other relative"],
+other:"Please specify the relationship",
+diagnosisAge:"How old was the relative at diagnosis?",
+under50:"Under 50 years",over50:"50 years or older",
+radiation:"Have you had radiation therapy to the chest between ages 10 and 30?",
+mammogram:"When was your last Mammography?",
+last23:"Within the last 23 months",old23:"23 months ago or longer",
+never:"Never had this test",dontRemember:"I don't remember",
+pregnant:"Are you currently pregnant or breastfeeding?",
+implants:"Do you have breast implants or previous breast surgery?",
+personalB:"Have you ever been diagnosed with breast or ovarian cancer?",
+gene:"Have you been told you have a gene mutation associated with breast cancer risk?",
+geneName:"Do you know the name of the gene mutation?",
+geneOptions:["BRCA1","BRCA2","PALB2","TP53","Other mutation","I don't remember"],
+personalC:"Have you had colorectal cancer or had polyps removed?",
+condition:"Which condition occurred?",
+crcOptions:["Colorectal cancer","Polyps removed","Both"],
+whenCondition:"When was the most recent procedure?",
+whenOptions:["Within the last year","1–3 years ago","3–5 years ago","More than 5 years ago","I don't remember"],
+plan:"Do you have a follow-up plan from your doctor?",
+ibd:"Do you have a chronic inflammatory bowel disease?",
+ibdOptions:["Ulcerative Colitis","Crohn's Disease","Neither","I don't know"],
+lynch:"Is there a family history of an inherited syndrome?",
+lynchOptions:["Lynch Syndrome","Familial Adenomatous Polyposis (FAP)","No","I don't know"],
+childRadiation:"Have you received radiation therapy during childhood?",
+scope:"Have you ever had a Colonoscopy?",
+scopeWhen:"When was your last colonoscopy?",
+scopeOptions:["Within the last 5 years","5–10 years ago","More than 10 years ago","I don't remember"],
+fit:"Have you ever had a fecal immunochemical test (FIT)?",
+fitResult:"What was the result of your last FIT?",
+negative:"Negative",positive:"Positive",
+eligible:"You may be in a group recommended for screening",
+eligibleDesc:"Based on your answers, you may be eligible for routine screening. Confirm eligibility with a healthcare professional.",
+custom:"You may need an individualized screening plan",
+customDesc:"Your answers indicate a risk factor or medical history that warrants a clinician's review.",
+notEligible:"Routine screening may not be indicated currently",
+notEligibleDesc:"Based on the information entered, routine screening criteria in this tool do not currently apply. Review educational information and reassess if your age or risk factors change.",
+education:"Educational information",centers:"Nearby centers",
+locationPrompt:"Google Maps will open to search for nearby centers. Continue?",
+emTitle:"Emergency warning",emCall:"Call ambulance 997",
+select:"Please select an answer to continue.",
+ageBOptions:["Under 30","30–39 years","40 years or older"],
+ageCOptions:["Under 40","40–75 years","76–85 years","Over 85"]
+}
+};
+
+let lang="ar",path="",stage="",answers={},selected=[],relatives=[],relativeAges={};
+
+const $=id=>document.getElementById(id);
+const t=k=>words[lang][k]??k;
+
+function show(id){
+["home","type","questions","result","emergency"].forEach(x=>$(x).classList.toggle("hidden",x!==id));
+}
+
+function setLanguage(l){
+lang=l;
+document.documentElement.lang=l;
+document.documentElement.dir=l==="ar"?"rtl":"ltr";
+$("brand").textContent=l==="ar"?"درب الكشف المبكر":"Early Detection Path";
+$("typeTitle").textContent=t("type");
+$("typeQuestion").textContent=t("question");
+$("breastLabel").textContent=t("breast");
+$("colonLabel").textContent=t("colon");
+$("backHome").textContent=t("back");
+$("backButton").textContent=t("back");
+$("nextButton").textContent=t("next");
+$("restartButton").textContent=t("home");
+show("type");
+}
+
+function goHome(){
+answers={};selected=[];relatives=[];relativeAges={};
+path="";stage="";
+show("home");
+}
+
+function goType(){show("type")}
+
+function startPath(p){
+path=p;
+answers={};selected=[];relatives=[];relativeAges={};
+stage=p==="breast"?"b_gender":"c_symptom";
+render();
+}
+
+function makeOptions(items,multiple=false){
+return `<div>${items.map((x,i)=>{
+let value=multiple?String(i):String(x.value);
+let label=multiple?x:x.label;
+let isSelected=multiple?selected.includes(i):answers[stage]===value;
+return `<button class="choice ${isSelected?'selected':''}" onclick="${multiple?`toggleMulti(${i})`:`choose('${value}')`}">
+${multiple?(isSelected?'☑ ':'☐ '):''}${label}</button>`;
+}).join("")}</div>`;
+}
+
+function choose(v){
+answers[stage]=v;
+advance();
+}
+
+function toggleMulti(i){
+if(selected.includes(i))selected=selected.filter(x=>x!==i);
+else selected.push(i);
+render();
+}
+
+function render(){
+let title="",html="",multi=false;
+const yesno=[{value:"yes",label:t("yes")},{value:"no",label:t("no")},{value:"unknown",label:t("unknown")}];
+const simple=(items)=>makeOptions(items);
+
+switch(stage){
+
+case"b_gender":
+title=t("gender");
+html=simple([{value:"female",label:t("female")},{value:"male",label:t("male")}]);
+break;
+
+case"b_symptom":
+title=t("symB");
+html=simple(yesno.slice(0,2));
+break;
+
+case"b_symptoms":
+title=t("symListB");html=makeOptions(t("breastSymptoms"),true);break;
+
+case"b_age":
+title=t("age");
+html=simple(t("ageBOptions").map((x,i)=>({value:String(i),label:x})));
+break;
+
+case"b_family":
+title=t("familyB");html=simple(yesno);break;
+
+case"b_relations":
+title=t("relation");html=makeOptions(t("relatives"),true);break;
+
+case"b_radiation":
+title=t("radiation");html=simple(yesno);break;
+
+case"b_mammo":
+title=t("mammogram");
+html=simple([
+{value:"last23",label:t("last23")},
+{value:"old23",label:t("old23")},
+{value:"never",label:t("never")},
+{value:"unknown",label:t("dontRemember")}
+]);
+break;
+
+case"b_pregnant":
+title=t("pregnant");html=simple(yesno.slice(0,2));break;
+
+case"b_implants":
+title=t("implants");html=simple(yesno.slice(0,2));break;
+
+case"b_personal":
+title=t("personalB");html=simple(yesno);break;
+
+case"b_gene":
+title=t("gene");html=simple(yesno);break;
+
+case"b_geneName":
+title=t("geneName");html=makeOptions(t("geneOptions"),true);break;
+
+case"c_symptom":
+title=t("symC");html=simple(yesno.slice(0,2));break;
+
+case"c_symptoms":
+title=t("symListC");html=makeOptions(t("colonSymptoms"),true);break;
+
+case"c_gender":
+title=t("gender");
+html=simple([{value:"female",label:t("female")},{value:"male",label:t("male")}]);
+break;
+
+case"c_age":
+title=t("age");
+html=simple(t("ageCOptions").map((x,i)=>({value:String(i),label:x})));
+break;
+
+case"c_family":
+title=t("familyC");html=simple(yesno);break;
+
+case"c_relations":
+title=t("relation");html=makeOptions(t("relatives"),true);break;
+
+case"c_personal":
+title=t("personalC");html=simple(yesno);break;
+
+case"c_condition":
+title=t("condition");html=simple(t("crcOptions").map((x,i)=>({value:String(i),label:x})));break;
+
+case"c_when":
+title=t("whenCondition");html=simple(t("whenOptions").map((x,i)=>({value:String(i),label:x})));break;
+
+case"c_plan":
+title=t("plan");html=simple(yesno);break;
+
+case"c_ibd":
+title=t("ibd");html=simple(t("ibdOptions").map((x,i)=>({value:String(i),label:x})));break;
+
+case"c_lynch":
+title=t("lynch");html=simple(t("lynchOptions").map((x,i)=>({value:String(i),label:x})));break;
+
+case"c_radiation":
+title=t("childRadiation");html=simple(yesno);break;
+
+case"c_scope":
+title=t("scope");html=simple(yesno);break;
+
+case"c_scopeWhen":
+title=t("scopeWhen");html=simple(t("scopeOptions").map((x,i)=>({value:String(i),label:x})));break;
+
+case"c_fit":
+title=t("fit");html=simple(yesno);break;
+
+case"c_fitResult":
+title=t("fitResult");
+html=simple([
+{value:"negative",label:t("negative")},
+{value:"positive",label:t("positive")},
+{value:"unknown",label:t("unknown")}
+]);
+break;
+
+}
+
+$("pathLabel").textContent=path==="breast"?t("breast"):t("colon");
+$("stepLabel").textContent=t("next");
+$("questionTitle").textContent=title;
+$("questionBody").innerHTML=html;
+$("backButton").textContent=t("back");
+$("nextButton").textContent=t("next");
+show("questions");
+}
+
+function advance(){
+
+const next={
+
+b_gender:"b_symptom",
+b_symptom:answers.b_symptom==="yes"?"b_symptoms":"b_age",
+b_age:"b_family",
+b_family:answers.b_family==="yes"?"b_relations":"b_radiation",
+b_relations:"b_radiation",
+b_radiation:"b_mammo",
+b_mammo:"b_pregnant",
+b_pregnant:"b_implants",
+b_implants:"b_personal",
+b_personal:"b_gene",
+b_gene:answers.b_gene==="yes"?"b_geneName":"b_result",
+b_geneName:"b_result",
+
+c_symptom:answers.c_symptom==="yes"?"c_symptoms":"c_gender",
+c_gender:"c_age",
+c_age:"c_family",
+c_family:answers.c_family==="yes"?"c_relations":"c_personal",
+c_relations:"c_personal",
+c_personal:answers.c_personal==="yes"?"c_condition":"c_ibd",
+c_condition:"c_when",
+c_when:"c_plan",
+c_plan:"c_ibd",
+c_ibd:"c_lynch",
+c_lynch:"c_radiation",
+c_radiation:"c_scope",
+c_scope:answers.c_scope==="yes"?"c_scopeWhen":"c_fit",
+c_scopeWhen:"c_fit",
+c_fit:answers.c_fit==="yes"?"c_fitResult":"c_result",
+c_fitResult:"c_result"
+};
+
+if(stage==="b_symptoms"||stage==="c_symptoms"){
+if(!selected.length){alert(t("select"));return}
+showSymptomResult();
+return;
+}
+
+if(stage==="b_relations"||stage==="c_relations"){
+if(!selected.length){alert(t("select"));return}
+relatives=selected.map(i=>t("relatives")[i]);
+}
+
+if(stage==="b_geneName"){
+if(!selected.length){alert(t("select"));return}
+answers.geneNames=selected.map(i=>t("geneOptions")[i]);
+}
+
+if(stage==="b_result"||stage==="c_result"){
+showResult();return;
+}
+
+if(!answers[stage]&&stage!=="b_relations"&&stage!=="c_relations"&&stage!=="b_geneName"){
+alert(t("select"));return;
+}
+
+stage=next[stage]||"b_result";
+selected=[];
+render();
+}
+
+function showSymptomResult(){
+$("resultIcon").textContent="⚠️";
+$("resultTitle").textContent=t("symTitle");
+$("resultDescription").textContent=t("symDesc");
+$("resultNote").textContent=t("nextSteps");
+$("resultActions").innerHTML=`
+<button class="btn primary" onclick="openNearby()">${t("nearby")}</button>
+<a class="btn border text-center" target="_blank" rel="noopener" href="${videos[path]}">${t("video")}</a>
+<button class="btn border sm:col-span-2" onclick="showEmergency()">${t("emergency")}</button>
+`;
+show("result");
+}
+
+function showEmergency(){
+$("emergencyTitle").textContent=t("emTitle");
+$("emergencyText").textContent=t("emergencyText");
+$("emergencyCall").textContent=t("emCall");
+$("emergencyBack").textContent=t("back");
+show("emergency");
+}
+
+function showResult(){
+
+let result="eligible";
+
+if(path==="breast"){
+
+if(
+answers.b_personal==="yes"||
+answers.b_gene==="yes"||
+answers.b_radiation==="yes"||
+answers.b_family==="yes"||
+(answers.b_gender==="female"&&answers.b_implants==="yes")
+){
+result="custom";
+}
+else if(answers.b_gender==="male"||answers.b_age==="0"){
+result="notEligible";
+}
+else if(answers.b_age==="1"){
+result="custom";
+}
+else if(answers.b_mammo==="last23"){
+result="notEligible";
+}
+
+}else{
+
+if(
+answers.c_fitResult==="positive"||
+answers.c_personal==="yes"||
+answers.c_family==="yes"||
+answers.c_ibd==="0"||
+answers.c_ibd==="1"||
+answers.c_lynch==="0"||
+answers.c_lynch==="1"||
+answers.c_radiation==="yes"
+){
+result="custom";
+}
+else if(answers.c_age==="0"||answers.c_age==="3"){
+result="notEligible";
+}
+else if(answers.c_age==="2"){
+result="custom";
+}
+
+}
+
+const data={
+eligible:{
+icon:"✅",
+title:t("eligible"),
+description:t("eligibleDesc")
+},
+custom:{
+icon:"📋",
+title:t("custom"),
+description:t("customDesc")
+},
+notEligible:{
+icon:"ℹ️",
+title:t("notEligible"),
+description:t("notEligibleDesc")
+}
+};
+
+$("resultIcon").textContent=data[result].icon;
+$("resultTitle").textContent=data[result].title;
+$("resultDescription").textContent=data[result].description;
+$("resultNote").textContent=t("nextSteps");
+
+let actions="";
+
+if(result!=="notEligible"){
+actions+=`<button class="btn primary" onclick="openNearby()">${t("centers")}</button>`;
+}
+
+actions+=`<a class="btn border text-center" target="_blank" rel="noopener" href="${videos[path]}">${t("education")}</a>`;
+
+$("resultActions").innerHTML=actions;
+$("restartButton").textContent=t("home");
+show("result");
+}
+
+function openNearby(){
+if(!confirm(t("locationPrompt")))return;
+
+const query=path==="breast"
+?"breast cancer screening center hospital"
+:"colorectal screening center hospital";
+
+window.open(
+"https://www.google.com/maps/search/"+encodeURIComponent(query),
+"_blank"
+);
+}
+
+$("emergencyBack").onclick=showResult;
+
+</script>
 </body>
 </html>
